@@ -1,5 +1,10 @@
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/labels/kivy.py
 from .labels import LabelsPlugin
 from electrum_dash.plugin import hook
+=======
+from labels import LabelsPlugin
+from electrum_PAC.plugins import hook
+>>>>>>> Rebranding for PAC:plugins/labels/kivy.py
 
 class Plugin(LabelsPlugin):
 

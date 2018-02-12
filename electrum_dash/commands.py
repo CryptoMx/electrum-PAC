@@ -384,8 +384,13 @@ class Commands:
 
     @command('')
     def version(self):
+<<<<<<< refs/remotes/upstream/master:electrum_dash/commands.py
         """Return the version of Dash Electrum."""
         from .version import ELECTRUM_VERSION
+=======
+        """Return the version of electrum-PAC."""
+        from version import ELECTRUM_VERSION
+>>>>>>> Rebranding for PAC:lib/commands.py
         return ELECTRUM_VERSION
 
     @command('w')
@@ -518,7 +523,7 @@ class Commands:
 
     @command('w')
     def setlabel(self, key, label):
-        """Assign a label to an item. Item may be a Dash address or a
+        """Assign a label to an item. Item may be a PAC address or a
         transaction ID"""
         self.wallet.set_label(key, label)
 
@@ -610,7 +615,7 @@ class Commands:
             PR_PAID: 'Paid',
             PR_EXPIRED: 'Expired',
         }
-        out['amount (DASH)'] = format_satoshis(out.get('amount'))
+        out['amount (PAC)'] = format_satoshis(out.get('amount'))
         out['status'] = pr_str[out.get('status', PR_UNKNOWN)]
         return out
 
@@ -965,8 +970,8 @@ def eval_bool(x: str) -> bool:
 
 param_descriptions = {
     'privkey': 'Private key. Type \'?\' to get a prompt.',
-    'destination': 'Dash address, contact or alias',
-    'address': 'Dash address',
+    'destination': 'PAC address, contact or alias',
+    'address': 'PAC address',
     'seed': 'Seed phrase',
     'txid': 'Transaction ID',
     'pos': 'Position',
@@ -976,16 +981,21 @@ param_descriptions = {
     'pubkey': 'Public key',
     'message': 'Clear text message. Use quotes if it contains spaces.',
     'encrypted': 'Encrypted message',
-    'amount': 'Amount to be sent (in DASH). Type \'!\' to send the maximum available.',
-    'requested_amount': 'Requested amount (in DASH).',
+    'amount': 'Amount to be sent (in PAC). Type \'!\' to send the maximum available.',
+    'requested_amount': 'Requested amount (in PAC).',
     'outputs': 'list of ["address", amount]',
+<<<<<<< refs/remotes/upstream/master:electrum_dash/commands.py
     'redeem_script': 'redeem script (hexadecimal)',
     'conf_file': 'Masternode.conf file from Dash.',
+=======
+    'conf_file': 'Masternode.conf file from PAC.',
+>>>>>>> Rebranding for PAC:lib/commands.py
     'alias': 'Masternode alias.',
     'cpfile': 'Checkpoints file',
 }
 
 command_options = {
+<<<<<<< refs/remotes/upstream/master:electrum_dash/commands.py
     'broadcast':   (None, "Broadcast the transaction to the Dash network"),
     'password':    ("-W", "Password"),
     'new_password':(None, "New Password"),
@@ -1024,6 +1034,38 @@ command_options = {
     'fee_level':   (None, "Float between 0.0 and 1.0, representing fee slider position"),
     'from_height': (None, "Only show transactions that confirmed after given block height"),
     'to_height':   (None, "Only show transactions that confirmed before given block height"),
+=======
+    'broadcast':   (None, "--broadcast",   "Broadcast the transaction to the PAC network"),
+    'password':    ("-W", "--password",    "Password"),
+    'new_password':(None, "--new_password","New Password"),
+    'receiving':   (None, "--receiving",   "Show only receiving addresses"),
+    'change':      (None, "--change",      "Show only change addresses"),
+    'frozen':      (None, "--frozen",      "Show only frozen addresses"),
+    'unused':      (None, "--unused",      "Show only unused addresses"),
+    'funded':      (None, "--funded",      "Show only funded addresses"),
+    'show_balance':("-b", "--balance",     "Show the balances of listed addresses"),
+    'show_labels': ("-l", "--labels",      "Show the labels of listed addresses"),
+    'nocheck':     (None, "--nocheck",     "Do not verify aliases"),
+    'imax':        (None, "--imax",        "Maximum number of inputs"),
+    'tx_fee':      ("-f", "--fee",         "Transaction fee (in PAC)"),
+    'from_addr':   ("-F", "--from",        "Source address. If it isn't in the wallet, it will ask for the private key unless supplied in the format public_key:private_key. It's not saved in the wallet."),
+    'change_addr': ("-c", "--change",      "Change address. Default is a spare address, or the source address if it's not in the wallet"),
+    'nbits':       (None, "--nbits",       "Number of bits of entropy"),
+    'entropy':     (None, "--entropy",     "Custom entropy"),
+    'language':    ("-L", "--lang",        "Default language for wordlist"),
+    'gap_limit':   ("-G", "--gap",         "Gap limit"),
+    'privkey':     (None, "--privkey",     "Private key. Set to '?' to get a prompt."),
+    'unsigned':    ("-u", "--unsigned",    "Do not sign transaction"),
+    'locktime':    (None, "--locktime",    "Set locktime block number"),
+    'domain':      ("-D", "--domain",      "List of addresses"),
+    'memo':        ("-m", "--memo",        "Description of the request"),
+    'expiration':  (None, "--expiration",  "Time in seconds"),
+    'timeout':     (None, "--timeout",     "Timeout in seconds"),
+    'force':       (None, "--force",       "Create new address beyond gap limit, if no more addresses are available."),
+    'pending':     (None, "--pending",     "Show only pending requests."),
+    'expired':     (None, "--expired",     "Show only expired requests."),
+    'paid':        (None, "--paid",        "Show only paid requests."),
+>>>>>>> Rebranding for PAC:lib/commands.py
 }
 
 
@@ -1058,10 +1100,17 @@ config_variables = {
         'requests_dir': 'directory where a bip70 file will be written.',
         'ssl_privkey': 'Path to your SSL private key, needed to sign the request.',
         'ssl_chain': 'Chain of SSL certificates, needed for signed requests. Put your certificate at the top and the root CA at the end',
+<<<<<<< refs/remotes/upstream/master:electrum_dash/commands.py
         'url_rewrite': 'Parameters passed to str.replace(), in order to create the r= part of dash: URIs. Example: \"(\'file:///var/www/\',\'https://electrum.dash.org/\')\"',
     },
     'listrequests':{
         'url_rewrite': 'Parameters passed to str.replace(), in order to create the r= part of dash: URIs. Example: \"(\'file:///var/www/\',\'https://electrum.dash.org/\')\"',
+=======
+        'url_rewrite': 'Parameters passed to str.replace(), in order to create the r= part of PAC: URIs. Example: \"(\'file:///var/www/\',\'https://electrum.org/\')\"',
+    },
+    'listrequests':{
+        'url_rewrite': 'Parameters passed to str.replace(), in order to create the r= part of PAC: URIs. Example: \"(\'file:///var/www/\',\'https://electrum.org/\')\"',
+>>>>>>> Rebranding for PAC:lib/commands.py
     }
 }
 
@@ -1141,8 +1190,13 @@ def get_parser():
     add_global_options(parser)
     subparsers = parser.add_subparsers(dest='cmd', metavar='<command>')
     # gui
+<<<<<<< refs/remotes/upstream/master:electrum_dash/commands.py
     parser_gui = subparsers.add_parser('gui', description="Run Dash Electrum Graphical User Interface.", help="Run GUI (default)")
     parser_gui.add_argument("url", nargs='?', default=None, help="dash URI (or bip70 file)")
+=======
+    parser_gui = subparsers.add_parser('gui', description="Run Electrum's Graphical User Interface.", help="Run GUI (default)")
+    parser_gui.add_argument("url", nargs='?', default=None, help="PAC URI (or bip70 file)")
+>>>>>>> Rebranding for PAC:lib/commands.py
     parser_gui.add_argument("-g", "--gui", dest="gui", help="select graphical user interface", choices=['qt', 'kivy', 'text', 'stdio'])
     parser_gui.add_argument("-o", "--offline", action="store_true", dest="offline", default=False, help="Run offline")
     parser_gui.add_argument("-m", action="store_true", dest="hide_gui", default=False, help="hide GUI on startup")

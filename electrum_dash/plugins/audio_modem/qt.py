@@ -5,6 +5,7 @@ from io import BytesIO
 import sys
 import platform
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/audio_modem/qt.py
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QLabel, QPushButton)
 
 from electrum_dash.plugin import BasePlugin, hook
@@ -14,6 +15,12 @@ from electrum_dash.logging import get_logger
 
 
 _logger = get_logger(__name__)
+=======
+from electrum_PAC.plugins import BasePlugin, hook
+from electrum_PAC_gui.qt.util import WaitingDialog, EnterButton, WindowModalDialog
+from electrum_PAC.util import print_msg, print_error
+from electrum_PAC.i18n import _
+>>>>>>> Rebranding for PAC:plugins/audio_modem/qt.py
 
 
 try:

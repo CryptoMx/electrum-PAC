@@ -53,7 +53,15 @@ class Plugins(DaemonThread):
     @profiler
     def __init__(self, config: SimpleConfig, gui_name):
         DaemonThread.__init__(self)
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugin.py
         self.setName('Plugins')
+=======
+        if is_local:
+            find = imp.find_module('plugins')
+            plugins = imp.load_module('electrum_PAC_plugins', *find)
+        else:
+            plugins = __import__('electrum_PAC_plugins')
+>>>>>>> Rebranding for PAC:lib/plugins.py
         self.pkgpath = os.path.dirname(plugins.__file__)
         self.config = config
         self.hw_wallets = {}
@@ -101,10 +109,17 @@ class Plugins(DaemonThread):
 
     def load_plugin(self, name):
         if name in self.plugins:
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugin.py
             return self.plugins[name]
         full_name = f'electrum_dash.plugins.{name}.{self.gui_name}'
         spec = importlib.util.find_spec(full_name)
         if spec is None:
+=======
+            return
+        full_name = 'electrum_PAC_plugins.' + name + '.' + self.gui_name
+        loader = pkgutil.find_loader(full_name)
+        if not loader:
+>>>>>>> Rebranding for PAC:lib/plugins.py
             raise RuntimeError("%s implementation for %s plugin not found"
                                % (self.gui_name, name))
         try:

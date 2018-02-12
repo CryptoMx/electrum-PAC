@@ -1,3 +1,13 @@
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/console.py
+=======
+# source: http://stackoverflow.com/questions/2758159/how-to-embed-a-python-interpreter-in-a-pyqt-widget
+
+import sys, os, re
+import traceback, platform
+from PyQt4 import QtCore
+from PyQt4 import QtGui
+from electrum_PAC import util
+>>>>>>> Rebranding for PAC:gui/qt/console.py
 
 # source: http://stackoverflow.com/questions/2758159/how-to-embed-a-python-interpreter-in-a-pyqt-widget
 

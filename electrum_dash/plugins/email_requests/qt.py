@@ -41,6 +41,7 @@ from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QGridLayout, QLineEdit,
                              QInputDialog)
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/email_requests/qt.py
 from electrum_dash.gui.qt.util import (EnterButton, Buttons, CloseButton,
                                        OkButton, WindowModalDialog,
                                        get_parent_main_window)
@@ -49,6 +50,14 @@ from electrum_dash.plugin import BasePlugin, hook
 from electrum_dash.paymentrequest import PaymentRequest
 from electrum_dash.i18n import _
 from electrum_dash.logging import Logger
+=======
+from electrum_PAC.plugins import BasePlugin, hook
+from electrum_PAC.paymentrequest import PaymentRequest
+from electrum_PAC.i18n import _
+from electrum_PAC_gui.qt.util import EnterButton, Buttons, CloseButton
+from electrum_PAC_gui.qt.util import OkButton, WindowModalDialog
+
+>>>>>>> Rebranding for PAC:plugins/email_requests/qt.py
 
 
 class Processor(threading.Thread, Logger):
@@ -82,7 +91,7 @@ class Processor(threading.Thread, Logger):
                 p = [p]
                 continue
             for item in p:
-                if item.get_content_type() == "application/dash-paymentrequest":
+                if item.get_content_type() == "application/PAC-paymentrequest":
                     pr_str = item.get_payload()
                     pr_str = base64.b64decode(pr_str)
                     self.on_receive(pr_str)
@@ -112,10 +121,15 @@ class Processor(threading.Thread, Logger):
         msg['Subject'] = message
         msg['To'] = recipient
         msg['From'] = self.username
-        part = MIMEBase('application', "dash-paymentrequest")
+        part = MIMEBase('application', "PAC-paymentrequest")
         part.set_payload(payment_request)
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/email_requests/qt.py
         encode_base64(part)
         part.add_header('Content-Disposition', 'attachment; filename="payreq.dash"')
+=======
+        Encoders.encode_base64(part)
+        part.add_header('Content-Disposition', 'attachment; filename="payreq.PAC"')
+>>>>>>> Rebranding for PAC:plugins/email_requests/qt.py
         msg.attach(part)
         try:
             s = smtplib.SMTP_SSL(self.imap_server, timeout=2)
@@ -177,7 +191,7 @@ class Plugin(BasePlugin):
         menu.addAction(_("Send via e-mail"), lambda: self.send(window, addr))
 
     def send(self, window, addr):
-        from electrum_dash import paymentrequest
+        from electrum_PAC import paymentrequest
         r = window.wallet.receive_requests.get(addr)
         message = r.get('memo', '')
         if r.get('signature'):

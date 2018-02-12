@@ -1,6 +1,10 @@
 ''' Dummy NFC Provider to be used on desktops in case no other provider is found
 '''
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/nfc_scanner/scanner_dummy.py
 from . import NFCBase
+=======
+from electrum_PAC_gui.kivy.nfc_scanner import NFCBase
+>>>>>>> Rebranding for PAC:gui/kivy/nfc_scanner/scanner_dummy.py
 from kivy.clock import Clock
 from kivy.logger import Logger
 from kivy.app import App

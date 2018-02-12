@@ -1,3 +1,9 @@
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/virtualkeyboard/qt.py
+=======
+from PyQt4.QtGui import *
+from electrum_PAC.plugins import BasePlugin, hook
+from electrum_PAC.i18n import _
+>>>>>>> Rebranding for PAC:plugins/virtualkeyboard/qt.py
 import random
 
 from PyQt5.QtWidgets import (QVBoxLayout, QGridLayout, QPushButton)

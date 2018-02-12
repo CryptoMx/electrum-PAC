@@ -1,6 +1,7 @@
 import os
 import qrcode
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/qrcodewidget.py
 from PyQt5.QtGui import QColor
 import PyQt5.QtGui as QtGui
 from PyQt5.QtWidgets import (
@@ -9,6 +10,11 @@ from PyQt5.QtWidgets import (
 import electrum_dash
 from electrum_dash.i18n import _
 from .util import WindowModalDialog
+=======
+import electrum_PAC
+from electrum_PAC.i18n import _
+from util import WindowModalDialog
+>>>>>>> Rebranding for PAC:gui/qt/qrcodewidget.py
 
 
 class QRCodeWidget(QWidget):
@@ -98,7 +104,7 @@ class QRDialog(WindowModalDialog):
         hbox = QHBoxLayout()
         hbox.addStretch(1)
 
-        config = electrum_dash.get_config()
+        config = electrum_PAC.get_config()
         if config:
             filename = os.path.join(config.path, "qrcode.png")
 

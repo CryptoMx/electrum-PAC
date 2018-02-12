@@ -1,4 +1,4 @@
-"""DASH masternode support."""
+"""PAC masternode support."""
 import time
 import base64
 
@@ -187,9 +187,13 @@ class MasternodeAnnounce(object):
 
     Attributes:
         - alias: Alias to help the user identify this masternode.
+<<<<<<< refs/remotes/upstream/master:electrum_dash/masternode.py
         - vin: 1K Dash input (outpoint: 1K Dash input for proto > 70208).
+=======
+        - vin: 1K PAC input.
+>>>>>>> Rebranding for PAC:lib/masternode.py
         - addr: Address that the masternode can be reached at.
-        - collateral_key: Key that can spend the 1K Dash input.
+        - collateral_key: Key that can spend the 1K PAC input.
         - delegate_key: Key that the masternode will sign messages with.
         - sig: Message signature.
         - sig_time: Message signature creation time.

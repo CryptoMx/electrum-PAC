@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (QWidget, QTableView, QHeaderView,
                              QPushButton, QLineEdit, QHBoxLayout,
                              QFileDialog, QMessageBox)
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/masternode_dialog.py
 from electrum_dash import bitcoin
 from electrum_dash.i18n import _
 from electrum_dash.masternode import MasternodeAnnounce
@@ -20,6 +21,13 @@ from electrum_dash.masternode_manager import parse_masternode_conf
 from electrum_dash.protx import ProTxManager
 from electrum_dash.util import bfh
 from electrum_dash.logging import Logger
+=======
+from electrum_PAC import bitcoin
+from electrum_PAC.i18n import _
+from electrum_PAC.masternode import MasternodeAnnounce
+from electrum_PAC.masternode_manager import parse_masternode_conf
+from electrum_PAC.util import PrintError
+>>>>>>> Rebranding for PAC:gui/qt/masternode_dialog.py
 
 from .masternode_widgets import (SignAnnounceWidget, masternode_status,
                                  MasternodeEditor, MasternodeOutputsTab)

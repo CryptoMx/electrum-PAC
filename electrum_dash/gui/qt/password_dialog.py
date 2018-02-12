@@ -23,6 +23,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/password_dialog.py
 import re
 import math
 
@@ -35,6 +36,16 @@ from electrum_dash.plugin import run_hook
 
 from .util import icon_path, WindowModalDialog, OkButton, CancelButton, Buttons
 
+=======
+from PyQt4.QtGui import *
+from PyQt4.QtCore import *
+from electrum_PAC.i18n import _
+from util import *
+import re
+import math
+
+from electrum_PAC.plugins import run_hook
+>>>>>>> Rebranding for PAC:gui/qt/password_dialog.py
 
 def check_password_strength(password):
 
@@ -249,7 +260,11 @@ class ChangePasswordDialogForSW(ChangePasswordDialogBase):
             msg += ' ' + _('Use this dialog to add a password to your wallet.')
         else:
             if not is_encrypted:
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/password_dialog.py
                 msg = _('Your Dash coins are password protected. However, your wallet file is not encrypted.')
+=======
+                msg = _('Your PAC are password protected. However, your wallet file is not encrypted.')
+>>>>>>> Rebranding for PAC:gui/qt/password_dialog.py
             else:
                 msg = _('Your wallet is password protected and encrypted.')
             msg += ' ' + _('Use this dialog to change your password.')

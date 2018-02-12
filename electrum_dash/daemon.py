@@ -345,8 +345,13 @@ class Daemon(DaemonThread):
         gui_name = config.get('gui', 'qt')
         if gui_name in ['lite', 'classic']:
             gui_name = 'qt'
+<<<<<<< refs/remotes/upstream/master:electrum_dash/daemon.py
         gui = __import__('electrum_dash.gui.' + gui_name,
                          fromlist=['electrum_dash'])
+=======
+        gui = __import__('electrum_PAC_gui.' + gui_name,
+                         fromlist=['electrum_PAC_gui'])
+>>>>>>> Rebranding for PAC:lib/daemon.py
         self.gui = gui.ElectrumGui(config, self, plugins)
         try:
             self.gui.main()

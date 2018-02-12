@@ -1,12 +1,19 @@
 import time
 from struct import pack
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/clientbase.py
 from electrum_dash import ecc
 from electrum_dash.i18n import _
 from electrum_dash.util import UserCancelled
 from electrum_dash.keystore import bip39_normalize_passphrase
 from electrum_dash.bip32 import BIP32Node, convert_bip32_path_to_list_of_uint32
 from electrum_dash.logging import Logger
+=======
+from electrum_PAC.i18n import _
+from electrum_PAC.util import PrintError, UserCancelled
+from electrum_PAC.keystore import bip39_normalize_passphrase
+from electrum_PAC.bitcoin import serialize_xpub
+>>>>>>> Rebranding for PAC:plugins/trezor/clientbase.py
 
 
 class GuiMixin(object):
@@ -64,7 +71,11 @@ class GuiMixin(object):
             msg = _("Enter a passphrase to generate this wallet.  Each time "
                     "you use this wallet your {} will prompt you for the "
                     "passphrase.  If you forget the passphrase you cannot "
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/clientbase.py
                     "access the Dash coins in the wallet.").format(self.device)
+=======
+                    "access the PAC in the wallet.") % self.device
+>>>>>>> Rebranding for PAC:plugins/trezor/clientbase.py
         else:
             msg = _("Enter the passphrase to unlock this wallet:")
         passphrase = self.handler.get_passphrase(msg, self.creating_wallet)

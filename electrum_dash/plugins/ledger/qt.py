@@ -5,6 +5,7 @@ from functools import partial
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QInputDialog, QLabel, QVBoxLayout, QLineEdit
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/ledger/qt.py
 from electrum_dash.i18n import _
 from electrum_dash.plugin import hook
 from electrum_dash.wallet import Standard_Wallet
@@ -13,6 +14,12 @@ from electrum_dash.gui.qt.util import WindowModalDialog
 from .ledger import LedgerPlugin
 from ..hw_wallet.qt import QtHandlerBase, QtPluginBase
 from ..hw_wallet.plugin import only_hook_if_libraries_available
+=======
+from electrum_PAC.i18n import _
+from .ledger import LedgerPlugin
+from ..hw_wallet.qt import QtHandlerBase, QtPluginBase
+from electrum_PAC_gui.qt.util import *
+>>>>>>> Rebranding for PAC:plugins/ledger/qt.py
 
 
 class Plugin(LedgerPlugin, QtPluginBase):

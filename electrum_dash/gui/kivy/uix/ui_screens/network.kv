@@ -13,7 +13,11 @@ Popup:
                 SettingsItem:
                     value: _("{} connections.").format(app.num_nodes) if app.num_nodes else _("Not connected")
                     title: _("Status") + ': ' + self.value
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/uix/ui_screens/network.kv
                     description: _("Connections with Dash Electrum servers")
+=======
+                    description: _("Connections with Electrum-PAC servers")
+>>>>>>> Rebranding for PAC:gui/kivy/uix/ui_screens/network.kv
                     action: lambda x: None
 
                 CardSeparator

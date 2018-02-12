@@ -4,9 +4,17 @@
 
 import tlslite
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/scripts/bip70.py
 from electrum_dash.transaction import Transaction
 from electrum_dash import paymentrequest
 from electrum_dash import paymentrequest_pb2 as pb2
+=======
+from electrum_PAC.transaction import Transaction
+from electrum_PAC import bitcoin
+from electrum_PAC import x509
+from electrum_PAC import paymentrequest
+from electrum_PAC import paymentrequest_pb2 as pb2
+>>>>>>> Rebranding for PAC:scripts/bip70
 
 chain_file = 'mychain.pem'
 cert_file = 'mycert.pem'

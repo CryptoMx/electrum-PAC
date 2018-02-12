@@ -25,6 +25,7 @@
 
 import re
 from decimal import Decimal
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/paytoedit.py
 
 from PyQt5.QtGui import QFontMetrics
 from PyQt5.QtWidgets import QLineEdit
@@ -34,6 +35,9 @@ from electrum_dash.util import bfh
 from electrum_dash.transaction import TxOutput, push_script
 from electrum_dash.bitcoin import opcodes
 from electrum_dash.logging import Logger
+=======
+from electrum_PAC import bitcoin
+>>>>>>> Rebranding for PAC:gui/qt/paytoedit.py
 
 from .qrtextedit import ScanQRTextEdit
 from .completion_text_edit import CompletionTextEdit
@@ -96,6 +100,10 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit, Logger):
             return bitcoin.TYPE_SCRIPT, script
 
     def parse_script(self, x):
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/paytoedit.py
+=======
+        from electrum_PAC.transaction import opcodes, push_script
+>>>>>>> Rebranding for PAC:gui/qt/paytoedit.py
         script = ''
         for word in x.split():
             if word[0:3] == 'OP_':
@@ -131,7 +139,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit, Logger):
         self.payto_address = None
         if len(lines) == 1:
             data = lines[0]
-            if data.startswith("dash:"):
+            if data.startswith("PAC:"):
                 self.scan_f(data)
                 return
             try:
@@ -206,7 +214,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit, Logger):
 
     def qr_input(self):
         data = super(PayToEdit,self).qr_input()
-        if data.startswith("dash:"):
+        if data.startswith("PAC:"):
             self.scan_f(data)
             # TODO: update fee
 

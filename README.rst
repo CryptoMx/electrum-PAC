@@ -1,16 +1,16 @@
-Dash Electrum - Lightweight Dashpay client
+Electrum-PAC - Lightweight PAC client
 =====================================
 
 ::
 
   Licence: MIT Licence
   Author: Thomas Voegtlin
+  Homepage: https://electrum-PAC.org/
   Language: Python (>= 3.6)
-  Homepage: https://electrum.dash.org/
 
 
-.. image:: https://travis-ci.org/akhavr/electrum-dash.svg?branch=master
-    :target: https://travis-ci.org/akhavr/electrum-dash
+.. image:: https://travis-ci.org/akhavr/electrum-PAC.svg?branch=develop
+    :target: https://travis-ci.org/akhavr/electrum-PAC
     :alt: Build Status
 
 
@@ -20,23 +20,32 @@ Dash Electrum - Lightweight Dashpay client
 Getting started
 ===============
 
+Electrum-PAC is a pure python application. If you want to use the
+Qt interface, install the Qt dependencies::
 
 Use PPA setup
 -------------
 
-On Ubuntu/Linux Mint you can try to install Dash Electrum with next commands::
+If you downloaded the official package (tar.gz), you can run
+Electrum-PAC from its root directory, without installing it on your
+system; all the python dependencies are included in the 'packages'
+directory. To run Electrum-PAC from its root directory, just do::
 
-    sudo add-apt-repository ppa:akhavr/dash-electrum
-    sudo apt-get update
-    sudo apt-get install dash-electrum
+    ./electrum-PAC
 
+You can also install Electrum-PAC on your system, by running this command::
 
 Use source distribution
 -----------------------
 
+This will download and install the Python dependencies used by
+Electrum-PAC, instead of using the 'packages' directory.
 Dash Electrum is a pure python application. If you want to use the
 Qt interface, install the Qt dependencies::
 
+If you cloned the git repository, you need to compile extra files
+before you can run Electrum-PAC. Read the next section, "Development
+Version".
     sudo apt-get install python3-pyqt5
 
 If you downloaded the official package (tar.gz), you can run
@@ -50,6 +59,8 @@ To install x11-hash dependency in the 'packages' dir run once::
 
 To install precise tested versions of HW libs (trezor, ledeger, etc) run once::
 
+    git clone https://github.com/akhavr/electrum-PAC
+    cd electrum-PAC
     python3 -m pip install -t packages -r contrib/deterministic-build/requirements-hw.txt
 
 To install precise tested version of pyqt5 run once::

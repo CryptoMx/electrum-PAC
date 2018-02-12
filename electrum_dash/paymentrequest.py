@@ -48,8 +48,21 @@ from .network import Network
 from .logging import get_logger, Logger
 
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/paymentrequest.py
 _logger = get_logger(__name__)
 
+=======
+REQUEST_HEADERS = {
+    'Accept': 'application/PAC-paymentrequest',
+    'User-Agent': 'Electrum-PAC',
+}
+
+ACK_HEADERS = {
+    'Content-Type': 'application/PAC-payment',
+    'Accept': 'application/PAC-paymentack',
+    'User-Agent': 'Electrum-PAC'
+}
+>>>>>>> Rebranding for PAC:lib/paymentrequest.py
 
 REQUEST_HEADERS = {'Accept': 'application/dash-paymentrequest', 'User-Agent': 'Dash-Electrum'}
 ACK_HEADERS = {'Content-Type':'application/dash-payment','Accept':'application/dash-paymentack','User-Agent':'Dash-Electrum'}
@@ -78,6 +91,7 @@ async def get_payment_request(url: str) -> 'PaymentRequest':
     if u.scheme in ('http', 'https'):
         resp_content = None
         try:
+<<<<<<< refs/remotes/upstream/master:electrum_dash/paymentrequest.py
             proxy = Network.get_instance().proxy
             async with make_aiohttp_session(proxy, headers=REQUEST_HEADERS) as session:
                 async with session.get(url) as response:
@@ -96,6 +110,19 @@ async def get_payment_request(url: str) -> 'PaymentRequest':
             error = f"Error while contacting payment URL:\n{repr(e)}"
             if isinstance(e, aiohttp.ClientResponseError) and e.status == 400 and resp_content:
                 error += "\n" + resp_content.decode("utf8")
+=======
+            response = requests.request('GET', url, headers=REQUEST_HEADERS)
+            response.raise_for_status()
+            # Guard against `bitcoin:`-URIs with invalid payment request URLs
+            if "Content-Type" not in response.headers \
+            or response.headers["Content-Type"] != "application/PAC-paymentrequest":
+                data = None
+                error = "payment URL not pointing to a payment request handling server"
+            else:
+                data = response.content
+            print_error('fetched payment request', url, len(response.content))
+        except requests.exceptions.RequestException:
+>>>>>>> Rebranding for PAC:lib/paymentrequest.py
             data = None
     elif u.scheme == 'file':
         try:
@@ -284,8 +311,13 @@ class PaymentRequest:
         paymnt.merchant_data = pay_det.merchant_data
         paymnt.transactions.append(bfh(raw_tx))
         ref_out = paymnt.refund_to.add()
+<<<<<<< refs/remotes/upstream/master:electrum_dash/paymentrequest.py
         ref_out.script = util.bfh(transaction.Transaction.pay_script(TYPE_ADDRESS, refund_addr))
         paymnt.memo = "Paid using Dash Electrum"
+=======
+        ref_out.script = transaction.Transaction.pay_script(TYPE_ADDRESS, refund_addr)
+        paymnt.memo = "Paid using Electrum-PAC"
+>>>>>>> Rebranding for PAC:lib/paymentrequest.py
         pm = paymnt.SerializeToString()
         payurl = urllib.parse.urlparse(pay_det.payment_url)
         resp_content = None

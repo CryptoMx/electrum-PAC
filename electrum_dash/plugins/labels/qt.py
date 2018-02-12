@@ -5,9 +5,17 @@ import sys
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QVBoxLayout)
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/labels/qt.py
 from electrum_dash.plugin import hook
 from electrum_dash.i18n import _
 from electrum_dash.gui.qt.util import ThreadedButton, Buttons, EnterButton, WindowModalDialog, OkButton
+=======
+from electrum_PAC.plugins import hook
+from electrum_PAC.i18n import _
+from electrum_PAC_gui.qt import EnterButton
+from electrum_PAC_gui.qt.util import ThreadedButton, Buttons
+from electrum_PAC_gui.qt.util import WindowModalDialog, OkButton
+>>>>>>> Rebranding for PAC:plugins/labels/qt.py
 
 from .labels import LabelsPlugin
 

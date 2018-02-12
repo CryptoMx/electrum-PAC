@@ -46,8 +46,8 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-dash.desktop']),
-        (os.path.join(usr_share, icons_dirname), ['electrum_dash/gui/icons/electrum-dash.png']),
+        (os.path.join(usr_share, 'applications/'), ['electrum-PAC.desktop']),
+        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-PAC.png'])
     ]
 
 extras_require = {
@@ -59,23 +59,37 @@ extras_require['full'] = [pkg for sublist in list(extras_require.values()) for p
 
 
 setup(
-    name="Dash-Electrum",
+    name="Electrum-PAC",
     version=version.ELECTRUM_VERSION,
     python_requires='>={}'.format(MIN_PYTHON_VERSION),
     install_requires=requirements,
     extras_require=extras_require,
     packages=[
-        'electrum_dash',
-        'electrum_dash.gui',
-        'electrum_dash.gui.qt',
-        'electrum_dash.plugins',
-    ] + [('electrum_dash.plugins.'+pkg) for pkg in find_packages('electrum_dash/plugins')],
+        'electrum_PAC',
+        'electrum_PAC_gui',
+        'electrum_PAC_gui.qt',
+        'electrum_PAC_plugins',
+        'electrum_PAC_plugins.audio_modem',
+        'electrum_PAC_plugins.cosigner_pool',
+        'electrum_PAC_plugins.email_requests',
+        'electrum_PAC_plugins.hw_wallet',
+        'electrum_PAC_plugins.keepkey',
+        'electrum_PAC_plugins.labels',
+        'electrum_PAC_plugins.ledger',
+        'electrum_PAC_plugins.trezor',
+        'electrum_PAC_plugins.digitalbitbox',
+        'electrum_PAC_plugins.virtualkeyboard',
+    ],
     package_dir={
-        'electrum_dash': 'electrum_dash'
+        'electrum_PAC': 'lib',
+        'electrum_PAC_gui': 'gui',
+        'electrum_PAC_plugins': 'plugins',
     },
     package_data={
         '': ['*.txt', '*.json', '*.ttf', '*.otf'],
-        'electrum_dash': [
+        'electrum_PAC': [
+            'currencies.json',
+            'www/index.html',
             'wordlist/*.txt',
             'locale/*/LC_MESSAGES/electrum.mo',
         ],
@@ -85,12 +99,12 @@ setup(
             'icons/checkbox/*.*',
         ],
     },
-    scripts=['electrum_dash/electrum-dash'],
+    scripts=['electrum-PAC'],
     data_files=data_files,
-    description="Lightweight Dashpay Wallet",
-    maintainer="akhavr",
+    description="Lightweight PAC Wallet",
+    author="akhavr",
     maintainer_email="akhavr@khavr.com",
     license="MIT License",
-    url="https://electrum.dash.org",
-    long_description="""Lightweight Dashpay Wallet""",
+    url="https://paccoin.net",
+    long_description="""Lightweight PAC Wallet"""
 )

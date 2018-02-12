@@ -7,6 +7,7 @@ from binascii import hexlify, unhexlify
 
 import websocket
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/ledger/auth2fa.py
 from PyQt5.QtWidgets import (QDialog, QLineEdit, QTextEdit, QVBoxLayout, QLabel,
                              QWidget, QHBoxLayout, QComboBox, QPushButton)
 from PyQt5.QtCore import QThread, pyqtSignal
@@ -21,6 +22,15 @@ from electrum_dash.logging import get_logger
 
 _logger = get_logger(__name__)
 
+=======
+from electrum_PAC.i18n import _
+from electrum_PAC_gui.qt.util import *
+from electrum_PAC.util import print_msg
+
+import os, hashlib, websocket, threading, logging, json, copy
+from electrum_PAC_gui.qt.qrcodewidget import QRCodeWidget, QRDialog
+from btchip.btchip import *
+>>>>>>> Rebranding for PAC:plugins/ledger/auth2fa.py
 
 DEBUG = False
 

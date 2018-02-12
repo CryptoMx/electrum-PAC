@@ -29,6 +29,7 @@ from xmlrpc.client import ServerProxy
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QPushButton
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/cosigner_pool/qt.py
 from electrum_dash import util, keystore, ecc, crypto
 from electrum_dash import transaction
 from electrum_dash.bip32 import BIP32Node
@@ -39,6 +40,15 @@ from electrum_dash.util import bh2u, bfh
 
 from electrum_dash.gui.qt.transaction_dialog import show_transaction
 from electrum_dash.gui.qt.util import WaitingDialog
+=======
+from electrum_PAC import bitcoin, util
+from electrum_PAC import transaction
+from electrum_PAC.plugins import BasePlugin, hook
+from electrum_PAC.i18n import _
+from electrum_PAC.wallet import Multisig_Wallet
+
+from electrum_PAC_gui.qt.transaction_dialog import show_transaction
+>>>>>>> Rebranding for PAC:plugins/cosigner_pool/qt.py
 
 import sys
 import traceback
@@ -161,7 +171,7 @@ class Plugin(BasePlugin):
             d.cosigner_send_button.hide()
 
     def cosigner_can_sign(self, tx, cosigner_xpub):
-        from electrum_dash.keystore import is_xpubkey, parse_xpubkey
+        from electrum_PAC.keystore import is_xpubkey, parse_xpubkey
         xpub_set = set([])
         for txin in tx.inputs():
             for x_pubkey in txin['x_pubkeys']:

@@ -45,4 +45,8 @@ class NFCBase(Widget):
 NFCScanner = core_select_lib('nfc_manager', (
     # keep the dummy implementation as the last one to make it the fallback provider.NFCScanner = core_select_lib('nfc_scanner', (
     ('android', 'scanner_android', 'ScannerAndroid'),
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/nfc_scanner/__init__.py
     ('dummy', 'scanner_dummy', 'ScannerDummy')), True, 'electrum_dash.gui.kivy')
+=======
+    ('dummy', 'scanner_dummy', 'ScannerDummy')), True, 'electrum_PAC_gui.kivy')
+>>>>>>> Rebranding for PAC:gui/kivy/nfc_scanner/__init__.py

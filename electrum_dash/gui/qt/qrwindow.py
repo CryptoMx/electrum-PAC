@@ -28,7 +28,12 @@ from PyQt5.QtWidgets import QHBoxLayout, QWidget
 
 from .qrcodewidget import QRCodeWidget
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/qrwindow.py
 from electrum_dash.i18n import _
+=======
+from electrum_PAC_gui.qt.qrcodewidget import QRCodeWidget
+from electrum_PAC.i18n import _
+>>>>>>> Rebranding for PAC:gui/qt/qrwindow.py
 
 
 class QR_Window(QWidget):
@@ -36,9 +41,19 @@ class QR_Window(QWidget):
     def __init__(self, win):
         QWidget.__init__(self)
         self.win = win
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/qrwindow.py
         self.setWindowTitle('Dash Electrum - '+_('Payment Request'))
         self.setMinimumSize(800, 800)
         self.setFocusPolicy(Qt.NoFocus)
+=======
+        self.setWindowTitle('Electrum-PAC - '+_('Payment Request'))
+        self.setMinimumSize(800, 250)
+        self.address = ''
+        self.label = ''
+        self.amount = 0
+        self.setFocusPolicy(QtCore.Qt.NoFocus)
+
+>>>>>>> Rebranding for PAC:gui/qt/qrwindow.py
         main_box = QHBoxLayout()
         self.qrw = QRCodeWidget()
         main_box.addWidget(self.qrw, 1)

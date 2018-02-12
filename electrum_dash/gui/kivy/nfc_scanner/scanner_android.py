@@ -10,7 +10,11 @@ if platform != 'android':
     raise ImportError
 import threading
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/nfc_scanner/scanner_android.py
 from . import NFCBase
+=======
+from electrum_PAC_gui.kivy.nfc_scanner import NFCBase
+>>>>>>> Rebranding for PAC:gui/kivy/nfc_scanner/scanner_android.py
 from jnius import autoclass, cast
 from android.runnable import run_on_ui_thread
 from android import activity
@@ -165,20 +169,33 @@ class ScannerAndroid(NFCBase):
     def create_AAR(self):
         '''Create the record responsible for linking our application to the tag.
         '''
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/nfc_scanner/scanner_android.py
         return NdefRecord.createApplicationRecord(JString("org.dash.electrum.kivy"))
+=======
+        return NdefRecord.createApplicationRecord(
+            JString("org.electrum_PAC.electrum_PAC_develop.kivy"))
+>>>>>>> Rebranding for PAC:gui/kivy/nfc_scanner/scanner_android.py
 
     def create_TNF_EXTERNAL(self, data):
         '''Create our actual payload record.
         '''
         if BUILDVERSION >= 14:
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/nfc_scanner/scanner_android.py
             domain = "org.dash.electrum"
+=======
+            domain = "org.electrum_PAC.electrum_PAC_develop"
+>>>>>>> Rebranding for PAC:gui/kivy/nfc_scanner/scanner_android.py
             stype = "externalType"
             extRecord = NdefRecord.createExternal(domain, stype, data)
         else:
             # Creating the NdefRecord manually:
             extRecord = NdefRecord(
                 NdefRecord.TNF_EXTERNAL_TYPE,
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/nfc_scanner/scanner_android.py
                 "org.dash.electrum:externalType",
+=======
+                "org.electrum_PAC_electrum_PAC.electrum_PAC_develop:externalType",
+>>>>>>> Rebranding for PAC:gui/kivy/nfc_scanner/scanner_android.py
                 '',
                 data)
         return extRecord
@@ -213,7 +230,11 @@ class ScannerAndroid(NFCBase):
         # Create record
         ndef_record = NdefRecord(
                 NdefRecord.TNF_MIME_MEDIA,
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/nfc_scanner/scanner_android.py
                 'org.dash.electrum.kivy', '', data)
+=======
+                'org.electrum_PAC.electrum_PAC_develop.kivy', '', data)
+>>>>>>> Rebranding for PAC:gui/kivy/nfc_scanner/scanner_android.py
         
         # Create message
         ndef_message = NdefMessage([ndef_record])

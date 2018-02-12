@@ -1,7 +1,11 @@
-#:import VERSION electrum_dash.version.ELECTRUM_VERSION
+#:import VERSION electrum_PAC.version.ELECTRUM_VERSION
 
 Popup:
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/uix/ui_screens/about.kv
     title: _("About Dash Electrum")
+=======
+    title: _("About Electrum-PAC")
+>>>>>>> Rebranding for PAC:gui/kivy/uix/ui_screens/about.kv
     BoxLayout:
         orientation: 'vertical'
         spacing: '10dp'
@@ -26,10 +30,17 @@ Popup:
                 size_hint_x: 0.4
             TopLabel:
                 markup: True
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/uix/ui_screens/about.kv
                 text: '[color=6666ff][ref=x]https://electrum.dash.org[/ref][/color]'
                 on_ref_press:
                     import webbrowser
                     webbrowser.open("https://electrum.dash.org")
+=======
+                text: '[color=6666ff][ref=x]https://electrum-PAC.org[/ref][/color]'
+                on_ref_press:
+                    import webbrowser
+                    webbrowser.open("https://electrum-PAC.org")
+>>>>>>> Rebranding for PAC:gui/kivy/uix/ui_screens/about.kv
                 size_hint_x: 0.6
             TopLabel:
                 text: _('Developers')
@@ -38,7 +49,11 @@ Popup:
                 text: '\n'.join(['Thomas Voegtlin', 'Neil Booth', 'Akshay Arora'])
                 size_hint_x: 0.6
         TopLabel:
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/uix/ui_screens/about.kv
             text: _('Distributed by Electrum Technologies GmbH')
+=======
+            text: _('Distributed by Electrum-PAC Technologies GmbH')
+>>>>>>> Rebranding for PAC:gui/kivy/uix/ui_screens/about.kv
             padding: '0dp', '20dp'
         Widget:
             size_hint: None, 0.5

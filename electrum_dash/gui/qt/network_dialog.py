@@ -32,6 +32,7 @@ from PyQt5.QtWidgets import (QTreeWidget, QTreeWidgetItem, QMenu, QGridLayout, Q
                              QLineEdit, QDialog, QVBoxLayout, QHeaderView, QCheckBox,
                              QTabWidget, QWidget, QLabel)
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/network_dialog.py
 from electrum_dash.i18n import _
 from electrum_dash import constants, blockchain
 from electrum_dash.interface import serialize_server, deserialize_server
@@ -40,6 +41,11 @@ from electrum_dash.logging import get_logger
 
 from .util import Buttons, CloseButton, HelpButton, read_QIcon
 
+=======
+from electrum_PAC.i18n import _
+from electrum_PAC.network import DEFAULT_PORTS
+from electrum_PAC.network import serialize_server, deserialize_server
+>>>>>>> Rebranding for PAC:gui/qt/network_dialog.py
 
 _logger = get_logger(__name__)
 
@@ -304,7 +310,11 @@ class NetworkChoiceLayout(object):
         # Blockchain Tab
         grid = QGridLayout(blockchain_tab)
         msg =  ' '.join([
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/network_dialog.py
             _("Dash Electrum connects to several nodes in order to download block headers and find out the longest blockchain."),
+=======
+            _("Electrum-PAC connects to several nodes in order to download block headers and find out the longest blockchain."),
+>>>>>>> Rebranding for PAC:gui/qt/network_dialog.py
             _("This blockchain is used to verify the transactions sent by your transaction server.")
         ])
         self.status_label = QLabel('')
@@ -313,7 +323,11 @@ class NetworkChoiceLayout(object):
         grid.addWidget(HelpButton(msg), 0, 4)
 
         self.server_label = QLabel('')
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/network_dialog.py
         msg = _("Dash Electrum sends your wallet addresses to a single server, in order to receive your transaction history.")
+=======
+        msg = _("Electrum-PAC sends your wallet addresses to a single server, in order to receive your transaction history.")
+>>>>>>> Rebranding for PAC:gui/qt/network_dialog.py
         grid.addWidget(QLabel(_('Server') + ':'), 1, 0)
         grid.addWidget(self.server_label, 1, 1, 1, 3)
         grid.addWidget(HelpButton(msg), 1, 4)
@@ -327,6 +341,15 @@ class NetworkChoiceLayout(object):
         self.split_label = QLabel('')
         grid.addWidget(self.split_label, 3, 0, 1, 3)
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/network_dialog.py
+=======
+        msg = ' '.join([
+            _("If auto-connect is enabled, Electrum-PAC will always use a server that is on the longest blockchain."),
+            _("If it is disabled, you have to choose a server you want to use. Electrum-PAC will warn you if your server is lagging.")
+        ])
+        grid.addWidget(self.autoconnect_cb, 4, 0, 1, 3)
+        grid.addWidget(HelpButton(msg), 4, 4)
+>>>>>>> Rebranding for PAC:gui/qt/network_dialog.py
         self.nodes_list_widget = NodesListWidget(self)
         grid.addWidget(self.nodes_list_widget, 5, 0, 1, 5)
 

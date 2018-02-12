@@ -1,6 +1,7 @@
 [app]
 
 # (str) Title of your application
+<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/kivy/tools/buildozer.spec
 title = Dash Electrum
 
 # (str) Package name
@@ -8,6 +9,15 @@ package.name = Electrum_DASH
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.dash.electrum
+=======
+title = Electrum-PAC
+
+# (str) Package name
+package.name = Electrum-PAC
+
+# (str) Package domain (needed for android/ios packaging)
+package.domain = org.electrum_PAC.electrum_PAC_develop
+>>>>>>> Rebranding for PAC:gui/kivy/tools/buildozer.spec
 
 # (str) Source code where the main.py live
 source.dir = .

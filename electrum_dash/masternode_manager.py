@@ -3,6 +3,7 @@ import base64
 import threading
 from decimal import Decimal
 
+<<<<<<< refs/remotes/upstream/master:electrum_dash/masternode_manager.py
 from . import bitcoin
 from . import ecc
 from .blockchain import hash_header
@@ -15,6 +16,14 @@ from .logging import get_logger
 
 _logger = get_logger(__name__)
 
+=======
+import bitcoin
+from blockchain import Blockchain
+from masternode import MasternodeAnnounce, NetworkAddress
+from masternode_budget import BudgetProposal, BudgetVote
+from electrum_PAC.util import AlreadyHaveAddress, print_error
+from electrum_PAC.util import format_satoshis_plain
+>>>>>>> Rebranding for PAC:lib/masternode_manager.py
 
 BUDGET_FEE_CONFIRMATIONS = 6
 BUDGET_FEE_TX = 5 * bitcoin.COIN
@@ -196,7 +205,7 @@ class MasternodeManager(object):
         unused = lambda d: '%s:%d' % (d['prevout_hash'], d['prevout_n']) not in used_vins
         correct_amount = lambda d: d['value'] == 1000 * bitcoin.COIN
 
-        # Valid outputs have a value of exactly 1000 DASH and
+        # Valid outputs have a value of exactly 1000 PAC and
         # are not in use by an existing masternode.
         is_valid = lambda d: correct_amount(d) and unused(d)
 
@@ -229,7 +238,7 @@ class MasternodeManager(object):
                             (MASTERNODE_MIN_CONFIRMATIONS, tx_height.conf))
         # Ensure that the masternode's vin is valid.
         if mn.vin.get('value', 0) != bitcoin.COIN * 1000:
-            raise Exception('Masternode requires a collateral 1000 DASH output.')
+            raise Exception('Masternode requires a collateral 1000 PAC output.')
 
         # If the masternode has been announced, it can be announced again if it has been disabled.
         if mn.announced:
