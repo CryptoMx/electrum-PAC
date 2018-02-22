@@ -64,6 +64,23 @@ setup(
     python_requires='>={}'.format(MIN_PYTHON_VERSION),
     install_requires=requirements,
     extras_require=extras_require,
+    install_requires=[
+        'pyaes',
+        'ecdsa>=0.9',
+        'pbkdf2',
+        'requests',
+        'qrcode',
+        'protobuf',
+        'dnspython',
+        'jsonrpclib',
+        'PySocks>=1.6.6',
+        'trezor>=0.6.3',
+        'x11_hash>=1.4',
+    ],
+    dependency_links=[
+        'git+https://github.com/akhavr/x11_hash@1.4#egg=x11_hash-1.4',
+        'git+https://github.com/electrum-PAC/python-trezor@v0.6.13#egg=trezor',
+    ],
     packages=[
         'electrum_PAC',
         'electrum_PAC_gui',
