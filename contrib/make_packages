@@ -8,3 +8,36 @@ rm "$CONTRIB"/../packages/ -r
 #Install pure python modules in electrum directory
 python3 -m pip install -r "$CONTRIB"/deterministic-build/requirements.txt -t "$CONTRIB"/../packages
 
+    # copy dependencies into 'packages' directory
+    deps = [
+        'pyaes',
+        'ecdsa',
+        'pbkdf2',
+        'requests', # note: requests-2.5.1 is needed to build with pyinstaller
+        'qrcode',
+        'google/protobuf',
+        'dns',
+        'x11_hash',
+        'six',
+        'jsonrpclib',
+	    'socks',
+        'dis3',
+        'request',
+        'pefile',
+        'builtins',
+        'future',
+        'ordlookup',
+        'mnemonic',
+    ]
+    for module in deps:
+        f, pathname, descr = imp.find_module(module)
+        target = 'packages/' + module + descr[0]
+        if os.path.exists(target):
+            continue
+        d = os.path.dirname(target)
+        if d and not (os.path.exists(d)):
+            os.makedirs(d)
+        if descr[0]:
+            shutil.copy(pathname, target)
+        else:
+            shutil.copytree(pathname, target, ignore=shutil.ignore_patterns('*.pyc'))
