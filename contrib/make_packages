@@ -21,12 +21,12 @@ python3 -m pip install -r "$CONTRIB"/deterministic-build/requirements.txt -t "$C
         'six',
         'jsonrpclib',
 	    'socks',
-        'dis3',
-        'request',
-        'pefile',
-        'builtins',
-        'future',
-        'ordlookup',
+        #'dis3',
+        #'request',
+        #'pefile',
+        #'builtins',
+        #'future',
+        #'ordlookup',
         'mnemonic',
     ]
     for module in deps:
