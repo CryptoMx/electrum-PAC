@@ -69,7 +69,7 @@ setup(
         'ecdsa>=0.9',
         'pbkdf2',
         'requests',
-        'qrcode',
+        'qrcode>=5.3,<6',
         'protobuf',
         'dnspython',
         'jsonrpclib',
@@ -78,8 +78,8 @@ setup(
         'x11_hash>=1.4',
     ],
     dependency_links=[
-        'git+https://github.com/akhavr/x11_hash@1.4#egg=x11_hash-1.4',
-        'git+https://github.com/electrum-dash/python-trezor@v0.6.13#egg=trezor',
+        'git+https://github.com/PACCommunity/x11_hash@1.4#egg=x11_hash-1.4',
+        'git+https://github.com/PACCommunity/python-trezor@v0.6.13#egg=trezor',
     ],
     packages=[
         'electrum_PAC',
