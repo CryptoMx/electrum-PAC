@@ -554,7 +554,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         d = self.network.get_donation_address()
         if d:
             host = self.network.get_parameters()[0]
-            self.pay_to_URI('$PAC:%s?message=donation for %s'%(d, host))
+            self.pay_to_URI('paccoin:%s?message=donation for %s'%(d, host))
         else:
             self.show_error(_('No donation address for this server'))
 
@@ -2277,7 +2277,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if not data:
             return
         # if the user scanned a PAC URI
-        if data.startswith("PAC:"):
+        if data.startswith("paccoin:"):
             self.pay_to_URI(data)
             return
         # else if the user scanned an offline signed tx

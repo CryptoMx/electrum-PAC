@@ -469,7 +469,7 @@ def parse_URI(uri, on_pr=None):
         return {'address': uri}
 
     u = urlparse.urlparse(uri)
-    if u.scheme != 'PAC':
+    if u.scheme != 'paccoin':
         raise BaseException("Not a $PAC URI")
     address = u.path
 
@@ -538,7 +538,7 @@ def create_URI(addr, amount, message):
         if type(message) == unicode:
             message = message.encode('utf8')
         query.append('message=%s'%urllib.quote(message))
-    p = urlparse.ParseResult(scheme='PAC', netloc='', path=addr, params='',
+    p = urlparse.ParseResult(scheme='paccoin', netloc='', path=addr, params='',
                              query='&'.join(query), fragment='')
     return urlparse.urlunparse(p)
 
