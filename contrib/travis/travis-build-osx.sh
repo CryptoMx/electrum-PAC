@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_REPO_URL=https://github.com/akhavr/electrum-PAC.git
+BUILD_REPO_URL=https://github.com/PACCommunity/electrum-PAC.git
 
 cd build
 
