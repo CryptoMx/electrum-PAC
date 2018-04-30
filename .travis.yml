@@ -60,7 +60,7 @@ deploy:
   on:
     repo: PACCommunity/electrum-PAC
     tags: true
-    condition: "$TRAVIS_OS_NAME = osx"
+    #condition: "$TRAVIS_OS_NAME = osx"
 - provider: releases
   api_key:
     secure: lzu/ZNdGdgWe2ITNR4ShRKKAjRYVLFnAGL8hOUUYhmvDaJ5xZGYtDq1lBZLc29++l/7yu0iPsgTgP5hSR9kgR19cUiKEGzX8j65hkxPGdItVkhw43gRuQyn1xGRvU/kitaJgcRmpJgEOV1YZKn0Hgjpy8KJmr2cE5tMgQSyiDDofGAKNfUtaVckvjkLkTGYoTTNF7DNK4jYL/TT/8Vox9W6pyJz8eV2sdLyO0Z6GO7/f954yD7Nus8BQNNI7HR9G2bIsNPgsZ23TMPnon2i9f7tgNzzxjeT5Dk1jRwDFeGcAp9K8w3UETIcbtSIVT8tOlC66ejDIfdGnuBj0GUF9eLMlXExjzcUTCjZcz/rdtuLr5gd9ugN1qi9w9CEhiEPEP0moUOTGLEpzR6sv7/rXT8IQTaFPSWUmFIplrXwUXoDRqhvGkwlOF2lWR2AmcND1HxJrOHCU60AzeMiLTvFMtkBNq9IliNjpbLTcpxLjry3JpY7yjuOOTCujnfEOzhw1HzRN+snfAo/OAbK8/dOnSVQNt0G/8nA/IUqZZFnkx50dfdjg7sRT8mjzHbunBfhjsQYI/IZz9BvmCgZmwc+p9k+EW+aG1aWRPcMBOyXbTybj5UVYTKvwHPXhHXJWT2Wi5zkqKOtI+w/6jRVQ3godO0AstUYnjQYJBdwsjZ8RcE0=
@@ -70,4 +70,4 @@ deploy:
   on:
     repo: PACCommunity/electrum-PAC
     tags: true
-    condition: "$TRAVIS_OS_NAME = linux"
+    #condition: "$TRAVIS_OS_NAME = linux"
