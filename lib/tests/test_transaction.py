@@ -135,11 +135,11 @@ class TestTransaction(unittest.TestCase):
             xpubkey_to_address('')
 
     def test_parse_xpub(self):
-        res = xpubkey_to_address('fe4e13b0f311a55b8a5db9a32e959da9f011b131019d4cebe6141b9e2c93edcbfc0954c358b062a9f94111548e50bde5847a3096b8b7872dcffadb0e9579b9017b01000200')
-        self.assertEquals(res, ('04ee98d63800824486a1cf5b4376f2f574d86e0a3009a6448105703453f3368e8e1d8d090aaecdd626a45cc49876709a3bbb6dc96a4311b3cac03e225df5f63dfc', 'XjNytJHxbRZCF4s7MzaKvw4Rrf6bPRuPnW'))
+        res = xpubkey_to_address('044A7B10DC2FB0B17F08D363AEEB38FB304826B53369EC4F1339E4F01C8E425487626781EA6568A3308D72CABF52710BE28913012EA4D717D6B42D7043654E4BAE')
+        self.assertEquals(res, ('044A7B10DC2FB0B17F08D363AEEB38FB304826B53369EC4F1339E4F01C8E425487626781EA6568A3308D72CABF52710BE28913012EA4D717D6B42D7043654E4BAE', 'PKTVLrS7aHzYHwKHWCaMA2fGgqxmbCfNZc'))
 
         res = xpubkey_to_address('fd4c7d260305ef27224bbcf6cf5238d2b3638b5a78d5')
-        self.assertEquals(res, ('fd4c7d260305ef27224bbcf6cf5238d2b3638b5a78d5', 'Xn6ZqLcuKpYoSkiXKmLMWKtoF2sNExHwjT'))
+        self.assertEquals(res, ('fd4c7d260305ef27224bbcf6cf5238d2b3638b5a78d5', 'PKTVLrS7aHzYHwKHWCaMA2fGgqxmbCfNZc'))
 
     def test_version_field(self):
         tx = transaction.Transaction(v2_blob)
