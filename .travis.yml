@@ -39,8 +39,8 @@ install:
       pip install tox; pip install tox-travis;
   fi
 script:
-- if [[ -z $TRAVIS_TAG ]] && [[ $TRAVIS_OS_NAME == 'linux' ]];then
-      tox;
+#- if [[ -z $TRAVIS_TAG ]] && [[ $TRAVIS_OS_NAME == 'linux' ]]; then tox; fi
+- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then ./build/travis-build-osx.sh ; else ./build/travis-build-linux.sh;
   fi
 - if [[ -n $TRAVIS_TAG ]] && [[ $TRAVIS_OS_NAME == 'osx' ]]; then
       ./build/travis-build-osx.sh ;
