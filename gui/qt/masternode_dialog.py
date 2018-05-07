@@ -530,6 +530,9 @@ class MasternodeDialog(QDialog, PrintError):
             # Print traceback information to error log.
             self.print_error(''.join(traceback.format_tb(err[2])))
             self.print_error(''.join(traceback.format_exception_only(err[0], err[1])))
+
+            print(''.join(traceback.format_tb(err[2])))
+            print(''.join(traceback.format_exception_only(err[0], err[1])))
             self.sign_announce_widget.sign_button.setEnabled(True)
 
         util.WaitingDialog(self, _('Signing Masternode Announce...'), sign_thread, on_sign_successful, on_sign_error)

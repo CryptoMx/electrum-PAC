@@ -215,6 +215,34 @@ class Blockchain(util.PrintError):
             self.verify_header(header, prev_header, bits, target)
             prev_header = header
 
+    @classmethod
+    def serialize_header(cls, res):
+        s = int_to_hex(res.get('version'), 4) \
+            + rev_hex(res.get('prev_block_hash')) \
+            + rev_hex(res.get('merkle_root')) \
+            + int_to_hex(int(res.get('timestamp')), 4) \
+            + int_to_hex(int(res.get('bits')), 4) \
+            + int_to_hex(int(res.get('nonce')), 4)
+        return s
+
+    @classmethod
+    def deserialize_header(cls, s):
+        hex_to_int = lambda s: int('0x' + s[::-1].encode('hex'), 16)
+        h = {}
+        h['version'] = hex_to_int(s[0:4])
+        h['prev_block_hash'] = hash_encode(s[4:36])
+        h['merkle_root'] = hash_encode(s[36:68])
+        h['timestamp'] = hex_to_int(s[68:72])
+        h['bits'] = hex_to_int(s[72:76])
+        h['nonce'] = hex_to_int(s[76:80])
+        return h
+
+    @classmethod
+    def hash_header(cls, header):
+        if header is None:
+            return '0' * 64
+        return hash_encode(PoWHash(cls.serialize_header(header).decode('hex')))
+
     def path(self):
         d = util.get_headers_dir(self.config)
         filename = 'blockchain_headers' if self.parent_id is None else os.path.join('forks', 'fork_%d_%d'%(self.parent_id, self.checkpoint))

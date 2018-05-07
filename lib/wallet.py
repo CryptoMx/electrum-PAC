@@ -96,6 +96,7 @@ class Abstract_Wallet(PrintError):
         self.gap_limit_for_change = 6 # constant
         # saved fields
         self.use_change            = storage.get('use_change', True)
+        self.use_encryption        = storage.get('use_encryption', False)
         self.multiple_change       = storage.get('multiple_change', False)
         self.labels                = storage.get('labels', {})
         self.frozen_addresses      = set(storage.get('frozen_addresses',[]))
@@ -140,6 +141,10 @@ class Abstract_Wallet(PrintError):
 
     def diagnostic_name(self):
         return self.basename()
+
+    def set_use_encryption(self, use_encryption):
+        self.use_encryption = use_encryption
+        self.storage.put('use_encryption', use_encryption)
 
     def __str__(self):
         return self.basename()
@@ -335,6 +340,22 @@ class Abstract_Wallet(PrintError):
     def get_local_height(self):
         """ return last known height if we are offline """
         return self.network.get_local_height() if self.network else self.stored_height
+
+    def get_confirmations(self, tx):
+        """ return the number of confirmations of a monitored transaction. """
+        with self.lock:
+            if tx in self.verified_tx:
+                height, timestamp, pos = self.verified_tx[tx]
+                conf = (self.get_local_height() - height + 1)
+                if conf <= 0: timestamp = None
+            elif tx in self.unverified_tx:
+                conf = -1
+                timestamp = None
+            else:
+                conf = 0
+                timestamp = None
+
+        return conf, timestamp
 
     def get_tx_height(self, tx_hash):
         """ return the height and timestamp of a verified transaction. """

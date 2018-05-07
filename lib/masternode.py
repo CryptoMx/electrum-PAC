@@ -163,7 +163,7 @@ class MasternodeAnnounce(object):
 
     """
     def __init__(self, alias='', vin=None, addr=NetworkAddress(), collateral_key='', delegate_key='',
-                 sig='', sig_time=0, protocol_version=70201, last_ping=MasternodePing(),
+                 sig='', sig_time=0, protocol_version=70213, last_ping=MasternodePing(),
                  last_dsq=0, announced=False):
         self.alias = alias
         if vin is None:
@@ -232,7 +232,7 @@ class MasternodeAnnounce(object):
         s = str(self.addr)
         s += str(self.sig_time)
 
-        if self.protocol_version < 70201:
+        if self.protocol_version < 70213:
             # Decode the hex-encoded bytes for our keys.
             s += self.collateral_key.decode('hex')
             s += self.delegate_key.decode('hex')

@@ -13,7 +13,7 @@ from electrum_PAC.util import format_satoshis_plain
 BUDGET_FEE_CONFIRMATIONS = 6
 BUDGET_FEE_TX = 5 * bitcoin.COIN
 # From masternode.h
-MASTERNODE_MIN_CONFIRMATIONS = 15
+MASTERNODE_MIN_CONFIRMATIONS = 6
 
 MasternodeConfLine = namedtuple('MasternodeConfLine', ('alias', 'addr',
         'wif', 'txid', 'output_index'))
@@ -175,13 +175,14 @@ class MasternodeManager(object):
 
     def get_masternode_outputs(self, domain = None, exclude_frozen = True):
         """Get spendable coins that can be used as masternode collateral."""
-        coins = self.wallet.get_spendable_coins(domain = domain, exclude_frozen = exclude_frozen)
+        #coins = self.wallet.get_spendable_coins(domain = domain, exclude_frozen = exclude_frozen)
+        coins = self.wallet.get_spendable_coins(domain = domain, config = self.config)
 
         used_vins = map(lambda mn: '%s:%d' % (mn.vin.get('prevout_hash'), mn.vin.get('prevout_n', 0xffffffff)), self.masternodes)
         unused = lambda d: '%s:%d' % (d['prevout_hash'], d['prevout_n']) not in used_vins
-        correct_amount = lambda d: d['value'] == 1000 * bitcoin.COIN
+        correct_amount = lambda d: d['value'] == 500000 * bitcoin.COIN
 
-        # Valid outputs have a value of exactly 1000 PAC and
+        # Valid outputs have a value of exactly 500000 PAC and
         # are not in use by an existing masternode.
         is_valid = lambda d: correct_amount(d) and unused(d)
 
@@ -211,8 +212,8 @@ class MasternodeManager(object):
         if confirmations < MASTERNODE_MIN_CONFIRMATIONS:
             raise Exception('Collateral payment must have at least %d confirmations (current: %d)' % (MASTERNODE_MIN_CONFIRMATIONS, confirmations))
         # Ensure that the masternode's vin is valid.
-        if mn.vin.get('value', 0) != bitcoin.COIN * 1000:
-            raise Exception('Masternode requires a collateral 1000 PAC output.')
+        if mn.vin.get('value', 0) != bitcoin.COIN * 500000:
+            raise Exception('Masternode requires a collateral 500000 $PAC output.')
 
         # If the masternode has been announced, it can be announced again if it has been disabled.
         if mn.announced:
@@ -246,14 +247,14 @@ class MasternodeManager(object):
         header = self.wallet.network.get_header(height)
         mn.last_ping.block_hash = Blockchain.hash_header(header)
         mn.last_ping.vin = mn.vin
-
+        
         # Sign ping with delegate key.
         self.wallet.sign_masternode_ping(mn.last_ping, mn.delegate_key)
-
+        
         # After creating the Masternode Ping, sign the Masternode Announce.
         address = bitcoin.public_key_to_p2pkh(mn.collateral_key.decode('hex'))
         mn.sig = self.wallet.sign_message(address, mn.serialize_for_sig(update_time=True), password)
-
+        
         return mn
 
     def send_announce(self, alias):
@@ -270,6 +271,7 @@ class MasternodeManager(object):
         errmsg = []
         callback = lambda r: self.broadcast_announce_callback(alias, errmsg, r)
         self.network_event.clear()
+        print("Broadcasting to masternode.announce.broadcast: " + serialized)
         self.wallet.network.send([('masternode.announce.broadcast', [serialized])], callback)
         self.network_event.wait()
         self.subscribe_to_masternodes()
