@@ -659,24 +659,32 @@ QScrollBar:right-arrow {
 
 
 /**********************/
-/* 8. Tree Widget */
+/* 8. Tree Widget & QTableView */
 
-QTreeWidget {
+QTreeWidget{
     border: 0;
     background-color:rgba(255,255,255,128);
 }
 
-QTreeWidget::item {
+QTableView {
+    border: 0;
+    background-color:#fff;
+}
+
+QTreeWidget::item, 
+QTableView::item {
     color:#333;
 }
 
-QTreeWidget QHeaderView::section{
+QTreeWidget QHeaderView::section, 
+QTableView QHeaderView::section{
     background-color: #fff;
     color: #000;
     text-transform: uppercase;
 }
 
-QTreeWidget QHeaderView::section:horizontal{
+QTreeWidget QHeaderView::section:horizontal, 
+QTableView QHeaderView::section:horizontal{
     border-bottom: 3px solid #fef000;
 }
 
