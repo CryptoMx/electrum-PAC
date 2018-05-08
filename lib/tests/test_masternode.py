@@ -76,7 +76,7 @@ class TestMasternode(unittest.TestCase):
             '1465161129',
             bitcoin.hash_encode(bitcoin.hash_160('0269e1abb1ffe231ea045068272a06f0fae231d11b11a54225867d89267faa4e23'.decode('hex'))),
             bitcoin.hash_encode(bitcoin.hash_160('0269e1abb1ffe231ea045068272a06f0fae231d11b11a54225867d89267faa4e23'.decode('hex'))),
-            '70201',
+            '70213',
         ])
 
         self.assertEqual(expected, msg)
