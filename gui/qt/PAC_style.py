@@ -214,13 +214,13 @@ QWidget#central_widget {
 
 QWidget#section_title{
     font-weight:bold;
-    font-size: 40px;
+    font-size: 36px;
     text-transform: uppercase;
 }
 
 QWidget#section_content > QLabel{
     background-color:#fff;
-    font-size: 20px !important;
+    font-size: 18px !important;
     border-radius: 5px;
     height: 40px;
     padding-left: 10px;
@@ -231,16 +231,16 @@ QWidget#section_content > QLineEdit,
 QWidget#section_content > PayToEdit, 
 QWidget#section_content > QPlainTextEdit { 
     height:40px;
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 10px;
 }
 
 QWidget#section_content > QComboBox {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #sub_section_title{
-    font-size: 25px;
+    font-size: 22px;
 }
 
 QWidget#sub_section_content{
@@ -267,12 +267,12 @@ QWidget#console_container {
 }
 
 QWidget#home_container #sub_section_content QLabel#important_label{
-    font-size: 20px;
+    font-size: 18px;
     font-weight:bold;
 }
 
 QWidget#home_container #sub_section_content QLabel#normal_label{
-    font-size: 20px !important;
+    font-size: 18px !important;
 }
 
 QWidget#home_container QTreeWidget QHeaderView::section,
@@ -281,7 +281,7 @@ QWidget#coins_container QTreeWidget QHeaderView::section,
 QWidget#contacts_container QTreeWidget QHeaderView::section,
 QWidget#history_container QTreeWidget QHeaderView::section,
 QWidget#receive_container  QTreeWidget QHeaderView::section{
-    font-size: 16px;
+    font-size: 15px;
 }
 
 /* History Container */
@@ -441,7 +441,7 @@ QComboBox { /* Dropdown Menus */
     background:#fff;
     min-height:40px;
     color:#000;
-    
+
 }
 
 QComboBox:checked {
@@ -696,7 +696,7 @@ QDialog QTabWidget::pane {
 }
 
 QDialog QTabWidget QTabBar::tab {
-    background-color:#f2f0f0;
+    background-color:qradialgradient(cx:0.5, cy:0.5, radius: 0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 255, 255, 255), stop: 1 rgba(233, 233, 233, 255));;
     color:#333;
     padding-left:10px;
     padding-right:10px;
@@ -719,8 +719,7 @@ QDialog QTabWidget QTabBar::tab:selected, QDialog QTabWidget QTabBar::tab:hover 
 }
 
 QDialog QTabWidget QWidget {
-    background-color:#fff;
-    color:#333;
+    /*color:#333;*/
 }
 
 QDialog QTabWidget QWidget QAbstractSpinBox {

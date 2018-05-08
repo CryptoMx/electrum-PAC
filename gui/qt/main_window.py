@@ -795,7 +795,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         content_grid_layout.setAlignment(Qt.AlignTop)
         content_grid_layout.setSpacing(15)
         content_grid_layout.setColumnStretch(0,1)
-        content_grid_layout.setColumnMinimumWidth(1,350)
+        content_grid_layout.setColumnMinimumWidth(1,310)
         section_content.setLayout(content_grid_layout)
 
         ##History widget
