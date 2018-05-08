@@ -303,7 +303,8 @@ class MasternodeOutputsTab(QWidget):
         valid_outputs_box.addWidget(QLabel(_('Masternode Outputs:')))
         valid_outputs_box.addWidget(self.valid_outputs_list)
 
-        vbox.addLayout(util.Buttons(include_frozen_checkbox, self.scan_outputs_button))
+        #vbox.addLayout(util.Buttons(include_frozen_checkbox, self.scan_outputs_button))
+        vbox.addLayout(util.Buttons(self.scan_outputs_button))
         vbox.addLayout(valid_outputs_box)
 
         vbox.addWidget(self.collateral_edit)
