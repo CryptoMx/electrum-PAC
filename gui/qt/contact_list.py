@@ -42,6 +42,7 @@ class ContactList(MyTreeWidget):
         MyTreeWidget.__init__(self, parent, self.create_menu, [_('Name'), _('Address')], 0, [0])
         self.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.setSortingEnabled(True)
+        self.header().setResizeMode(1, QHeaderView.ResizeToContents)
 
     def on_permit_edit(self, item, column):
         # openalias items shouldn't be editable

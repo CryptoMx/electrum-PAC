@@ -34,6 +34,8 @@ class UTXOList(MyTreeWidget):
     def __init__(self, parent=None):
         MyTreeWidget.__init__(self, parent, self.create_menu, [ _('Address'), _('Label'), _('Amount'), _('Height'), _('Output point')], 1)
         self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.header().setResizeMode(0, QHeaderView.ResizeToContents)
+        self.header().setResizeMode(2, QHeaderView.ResizeToContents)
 
     def get_name(self, x):
         return x.get('prevout_hash') + ":%d"%x.get('prevout_n')
