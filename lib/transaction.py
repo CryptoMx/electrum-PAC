@@ -574,7 +574,7 @@ class Transaction:
 
     @classmethod
     def pay_script(self, output_type, addr):
-        if output_type == TYPE_SCRIPT:
+        if output_type == TYPE_SCRIPT or output_type == TYPE_PUBKEY:
             return addr.encode('hex')
         elif output_type == TYPE_ADDRESS:
             return get_scriptPubKey(addr)

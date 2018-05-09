@@ -418,21 +418,17 @@ def time_difference(distance_in_time, include_seconds):
 mainnet_block_explorers = {
     'japan.pacblockexplorer.com': ('http://japan.pacblockexplorer.com:3002/',
                        {'tx': 'tx', 'addr': 'address'}),
-    'usa.pacblockexplorer.com': ('http://usa.pacblockexplorer.com:3002',
-                       {'tx': 'tx', 'addr': 'addr'}),
     'eu.pacblockexplorer.com': ('http://eu.pacblockexplorer.com:3002',
                        {'tx': 'tx', 'addr': 'addr'}),
     'au.pacblockexplorer.com': ('http://au.pacblockexplorer.com:3002',
                        {'tx': 'tx', 'addr': 'addr'}),
-    'system default': ('blockchain:',
-                        {'tx': 'tx', 'addr': 'address'}),
+    'system default': ('http://usa.pacblockexplorer.com:3002',
+                       {'tx': 'tx', 'addr': 'addr'}),
 }
 
 testnet_block_explorers = {
-#    'PAC.org': ('https://test.explorer.PAC.org',
-#                       {'tx': 'tx', 'addr': 'address'}),
-#    'system default': ('blockchain:',
-#                       {'tx': 'tx', 'addr': 'address'}),
+    'system default': ('http://testnet.paccoin.io',
+                       {'tx': 'tx', 'addr': 'address'}),
 }
 
 def block_explorer_info():
@@ -440,7 +436,7 @@ def block_explorer_info():
     return testnet_block_explorers if bitcoin.TESTNET else mainnet_block_explorers
 
 def block_explorer(config):
-    return config.get('block_explorer', 'usa.pacblockexplorer.com')
+    return config.get('block_explorer', 'system default')
 
 def block_explorer_tuple(config):
     return block_explorer_info().get(block_explorer(config))

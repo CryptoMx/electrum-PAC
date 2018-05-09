@@ -515,8 +515,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             item_name = (_("Hide") if is_shown else _("Show")) + " " + tab.tab_description
             tab.menu_action = view_menu.addAction(item_name, lambda: self.toggle_tab(tab))
 
-        #wallet_menu.addSeparator()
-        #wallet_menu.addAction(_("Masternodes"), self.show_masternode_dialog)
+        wallet_menu.addSeparator()
+        wallet_menu.addAction(_("Masternodes"), self.show_masternode_dialog)
 
         tools_menu = menubar.addMenu(_("&Tools"))
 
@@ -795,7 +795,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         content_grid_layout.setAlignment(Qt.AlignTop)
         content_grid_layout.setSpacing(15)
         content_grid_layout.setColumnStretch(0,1)
-        content_grid_layout.setColumnMinimumWidth(1,350)
+        content_grid_layout.setColumnMinimumWidth(1,310)
         section_content.setLayout(content_grid_layout)
 
         ##History widget

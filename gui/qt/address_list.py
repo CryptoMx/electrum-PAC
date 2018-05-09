@@ -39,6 +39,9 @@ class AddressList(MyTreeWidget):
     def __init__(self, parent=None):
         MyTreeWidget.__init__(self, parent, self.create_menu, [ _('Address'), _('Label'), _('Balance'), _('Tx')], 1)
         self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.header().setResizeMode(0, QHeaderView.ResizeToContents)
+        self.header().setResizeMode(2, QHeaderView.ResizeToContents)
+        self.header().setResizeMode(3, QHeaderView.ResizeToContents)
 
     def on_update(self):
         self.wallet = self.parent.wallet

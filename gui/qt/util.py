@@ -397,7 +397,8 @@ class MyTreeWidget(QTreeWidget):
         self.header().setStretchLastSection(False)
         self.header().setDefaultAlignment(Qt.AlignCenter)
         for col in range(len(headers)):
-            sm = QHeaderView.Stretch if col == self.stretch_column else QHeaderView.ResizeToContents
+            sm = QHeaderView.Stretch #if col == self.stretch_column else
+            QHeaderView.ResizeToContents
             self.header().setResizeMode(col, sm)
 
     def editItem(self, item, column):

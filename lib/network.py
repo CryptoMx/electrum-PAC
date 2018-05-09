@@ -998,6 +998,9 @@ class Network(util.DaemonThread):
                 (i.server, i.server_version, e))
             self.invalid_version(i.server)
 
+    def get_header(self, tx_height):
+        return self.blockchain().read_header(tx_height)
+
     def on_notify_header(self, interface, header):
         height = header.get('block_height')
         if not height:

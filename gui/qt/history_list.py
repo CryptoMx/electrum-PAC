@@ -62,6 +62,8 @@ class HistoryList(MyTreeWidget):
         if fx and fx.show_history():
             headers.extend(['%s '%fx.ccy + _('Amount'), '%s '%fx.ccy + _('Balance')])
         self.update_headers(headers)
+        self.header().setResizeMode(0, QHeaderView.ResizeToContents)
+        self.header().setResizeMode(2, QHeaderView.ResizeToContents)
 
     def get_domain(self):
         '''Replaced in address_dialog.py'''

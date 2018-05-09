@@ -88,11 +88,11 @@ class PrevOutWidget(QWidget):
         super(PrevOutWidget, self).__init__(parent)
         self.vin = {}
         self.hash_edit = QLineEdit()
-        self.hash_edit.setPlaceholderText(_('The TxID of your 1000 PAC output'))
+        self.hash_edit.setPlaceholderText(_('The TxID of your 500000 $PAC output'))
         self.index_edit = QLineEdit()
-        self.index_edit.setPlaceholderText(_('The output number of your 1000 PAC output'))
+        self.index_edit.setPlaceholderText(_('The output number of your 500000 $PAC output'))
         self.address_edit = QLineEdit()
-        self.address_edit.setPlaceholderText(_('The address that 1000 PAC was sent to'))
+        self.address_edit.setPlaceholderText(_('The address that 500000 $PAC was sent to'))
 
         # Collection of fields so that it's easier to act on them all at once.
         self.fields = (self.hash_edit, self.index_edit, self.address_edit)
@@ -183,7 +183,7 @@ class MasternodeEditor(QWidget):
         self.delegate_key_edit.setFont(QFont(util.MONOSPACE_FONT))
         self.delegate_key_edit.setPlaceholderText(_('Your masternode\'s private key'))
         self.protocol_version_edit = QLineEdit()
-        self.protocol_version_edit.setText('70201')
+        self.protocol_version_edit.setText('70213')
 
         self.status_edit = QLineEdit()
         self.status_edit.setPlaceholderText(_('Masternode status'))
@@ -192,7 +192,7 @@ class MasternodeEditor(QWidget):
         form = QFormLayout()
         form.addRow(_('Alias:'), self.alias_edit)
         form.addRow(_('Status:'), self.status_edit)
-        form.addRow(_('Collateral PAC Output:'), self.vin_edit)
+        form.addRow(_('Collateral $PAC Output:'), self.vin_edit)
         form.addRow(_('Masternode Private Key:'), self.delegate_key_edit)
         form.addRow(_('Address:'), self.addr_edit)
         form.addRow(_('Protocol Version:'), self.protocol_version_edit)
@@ -283,7 +283,7 @@ class MasternodeOutputsTab(QWidget):
         vbox = QVBoxLayout()
 
         desc = ' '.join(['Use this tab to scan for and choose a collateral payment for your masternode.',
-            'A valid collateral payment is exactly 1000 PAC.'])
+            'A valid collateral payment is exactly 500000 $PAC.'])
         desc = QLabel(_(desc))
         desc.setWordWrap(True)
         vbox.addWidget(desc)
@@ -299,7 +299,8 @@ class MasternodeOutputsTab(QWidget):
         valid_outputs_box.addWidget(QLabel(_('Masternode Outputs:')))
         valid_outputs_box.addWidget(self.valid_outputs_list)
 
-        vbox.addLayout(util.Buttons(include_frozen_checkbox, self.scan_outputs_button))
+        #vbox.addLayout(util.Buttons(include_frozen_checkbox, self.scan_outputs_button))
+        vbox.addLayout(util.Buttons(self.scan_outputs_button))
         vbox.addLayout(valid_outputs_box)
 
         vbox.addWidget(self.collateral_edit)
@@ -307,7 +308,7 @@ class MasternodeOutputsTab(QWidget):
         self.setLayout(vbox)
 
     def scan_for_outputs(self, include_frozen):
-        """Scan for 1000 PAC outputs.
+        """Scan for 500000 $PAC outputs.
 
         If one or more is found, populate the list and enable the sign button.
         """
@@ -319,7 +320,7 @@ class MasternodeOutputsTab(QWidget):
         if len(coins) > 0:
             self.valid_outputs_list.add_outputs(coins)
         else:
-            self.status_edit.setText(_('No 1000 PAC outputs were found.'))
+            self.status_edit.setText(_('No 500000 $PAC outputs were found.'))
             self.status_edit.setStyleSheet(util.RED_FG)
 
     def set_output(self, vin):
@@ -344,7 +345,7 @@ class MasternodeOutputsTab(QWidget):
         status_text = _('Masternode has no collateral payment assigned.')
         can_scan = not mn.announced
         # Disable the scan_outputs button if the masternode already has an assigned output.
-        if mn.vin.get('value', 0) == COIN * 1000:
+        if mn.vin.get('value', 0) == COIN * 500000:
             can_scan = False
             self.valid_outputs_list.add_output(mn.vin)
             status_text = _('Masternode already has a collateral payment.')
