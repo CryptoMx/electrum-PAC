@@ -58,7 +58,7 @@ deploy:
   file:
   - build/electrum-PAC/dist/electrum-PAC-$ELECTRUM_PAC_VERSION-macosx.dmg
   on:
-    repo: PACCommunity/electrum-PAC
+    repo: PACCommunity/electrum-pac
     tags: true
     #condition: "$TRAVIS_OS_NAME = osx"
 - provider: releases
@@ -68,6 +68,6 @@ deploy:
   - build/electrum-PAC/dist/Electrum-PAC-$ELECTRUM_PAC_VERSION.tar.gz
   - build/electrum-PAC/dist/electrum-PAC-$ELECTRUM_PAC_VERSION-setup.exe
   on:
-    repo: PACCommunity/electrum-PAC
+    repo: PACCommunity/electrum-pac
     tags: true
     #condition: "$TRAVIS_OS_NAME = linux"
