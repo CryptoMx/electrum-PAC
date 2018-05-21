@@ -38,6 +38,7 @@ datas = [
     ('/opt/wine64/drive_c/electrum/packages/requests/cacert.pem', 'requests'),
     ('/opt/wine64/drive_c/electrum/lib/currencies.json', 'electrum_PAC'),
     ('/opt/wine64/drive_c/electrum/lib/wordlist', 'electrum_PAC/wordlist'),
+    ('/opt/wine64/drive_c/electrum/lib/locale', 'electrum_PAC/locale'),
 ]
 
 # https://github.com/pyinstaller/pyinstaller/wiki/Recipe-remove-tkinter-tcl

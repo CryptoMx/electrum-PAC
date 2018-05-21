@@ -114,9 +114,9 @@ class ElectrumGui:
         self.tray.setContextMenu(m)
 
     def tray_icon(self):
-        if self.dark_icon:
-            return QIcon(':icons/electrum_dark_icon.png')
-        else:
+        #if self.dark_icon:
+        #    return QIcon(':icons/electrum_dark_icon.png')
+        #else:
             return QIcon(':icons/electrum_light_icon.png')
 
     def toggle_tray_icon(self):
