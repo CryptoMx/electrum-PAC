@@ -6,7 +6,7 @@ fi
 
 cd build
 
-docker build -f Dockerfile-linux -t PACCommunity/electrum-PAC-release:Linux .
+docker build -f Dockerfile-linux -t paccommunity/electrum-pac-release:Linux .
 ./python-x11_hash-wine.sh
 ./python-trezor-wine.sh
-docker build -f Dockerfile-wine -t PACCommunity/electrum-PAC-release:Wine .
+docker build -f Dockerfile-wine -t paccommunity/electrum-pac-release:Wine .
