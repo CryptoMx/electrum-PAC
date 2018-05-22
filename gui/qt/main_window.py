@@ -154,28 +154,28 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         tabs.setIconSize(QSize(30,30))
 
         #Home
-        tabs.addTab(self.home_tab, QIcon(":icons/tab_home.png"), _('')) 
+        tabs.addTab(self.home_tab, QIcon(":icons/tab_home.png"), _(' ')) 
         tabs.setTabToolTip(0, _('Dashboard'))
         #History
-        tabs.addTab(self.history_tab, QIcon(":icons/tab_history.png"), _('')) 
+        tabs.addTab(self.history_tab, QIcon(":icons/tab_history.png"), _(' ')) 
         tabs.setTabToolTip(1, _('History'))
         #Send
-        tabs.addTab(self.send_tab, QIcon(":icons/tab_send.png"), _('')) 
+        tabs.addTab(self.send_tab, QIcon(":icons/tab_send.png"), _(' ')) 
         tabs.setTabToolTip(2, _('Send'))
         #Receive
-        tabs.addTab(self.receive_tab, QIcon(":icons/tab_receive.png"), _('')) 
+        tabs.addTab(self.receive_tab, QIcon(":icons/tab_receive.png"), _(' ')) 
         tabs.setTabToolTip(3, _('Receive'))
         #Addresses
-        tabs.addTab(self.addresses_tab, QIcon(":icons/tab_addresses.png"), _('')) 
+        tabs.addTab(self.addresses_tab, QIcon(":icons/tab_addresses.png"), _(' ')) 
         tabs.setTabToolTip(4, _('Addresses'))
         #Coins
-        tabs.addTab(self.utxo_tab, QIcon(":icons/tab_coins.png"), _('')) 
+        tabs.addTab(self.utxo_tab, QIcon(":icons/tab_coins.png"), _(' ')) 
         tabs.setTabToolTip(5, _('Coins'))
         #Contacts
-        tabs.addTab(self.contacts_tab, QIcon(":icons/tab_contacts.png"), _('')) 
+        tabs.addTab(self.contacts_tab, QIcon(":icons/tab_contacts.png"), _(' ')) 
         tabs.setTabToolTip(6, _('Contacts'))
         #Console
-        tabs.addTab(self.console_tab, QIcon(":icons/tab_console.png"), _('')) 
+        tabs.addTab(self.console_tab, QIcon(":icons/tab_console.png"), _(' ')) 
         tabs.setTabToolTip(7, _('Console'))
 
         tabs.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -541,9 +541,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum-PAC.org"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("https://github.com/PACCommunity/electrum-PAC"))
         help_menu.addSeparator()
-        help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://electrum-PAC.org/")).setShortcut(QKeySequence.HelpContents)
+        help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("https://github.com/PACCommunity/electrum-PAC")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
         help_menu.addSeparator()
         help_menu.addAction(_("&Donate to server"), self.donate_to_server)
@@ -567,7 +567,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def show_report_bug(self):
         msg = ' '.join([
             _("Please report any bugs as issues on github:<br/>"),
-            "<a href=\"https://github.com/PACCommunity/electrum-PAC/issues\">https://github.com/PACCommunity/electrum-PAC/issues</a><br/><br/>",
+            "<a href=\"https://github.com/PACCommunity/electrum-pac/issues\">https://github.com/PACCommunity/electrum-PAC/issues</a><br/><br/>",
             _("Before reporting a bug, upgrade to the most recent version of Electrum-PAC (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
