@@ -104,8 +104,6 @@ class MasternodeManager(object):
 
     def subscribe_to_masternodes(self):
         for mn in self.masternodes:
-            if not mn.announced:
-                continue
             collateral = mn.get_collateral_str()
             if self.masternode_statuses.get(collateral) is None:
                 req = ('masternode.subscribe', [collateral])
@@ -540,8 +538,13 @@ class MasternodeManager(object):
         if not mn:
             return
 
-        status = response['result']
+        if len(response['params']) > 1:
+            status = response['params'][1]
+        else:
+            status = response['result']
         if status is None:
             status = False
+        else:
+            mn.announced = True
         print_error('Received updated status for masternode %s: "%s"' % (mn.alias, status))
         self.masternode_statuses[collateral] = status
