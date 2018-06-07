@@ -531,7 +531,7 @@ class Network(util.DaemonThread):
         # We handle some responses; return the rest to the client.
         if method == 'server.version':
             if error is None:
-                self.on_version(interface, result)
+                self.on_version(interface, result[1])
         elif method == 'blockchain.headers.subscribe':
             if error is None:
                 self.on_notify_header(interface, result)
