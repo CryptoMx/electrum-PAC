@@ -479,7 +479,7 @@ class Abstract_Wallet(PrintError):
                         fee = self.tx_fees.get(tx_hash)
                     if fee and self.network.config.has_fee_estimates():
                         size = tx.estimated_size()
-                        fee_per_kb = fee * 1000 / size
+                        fee_per_kb = fee * 5000000000 / size
                         exp_n = self.network.config.reverse_dynfee(fee_per_kb)
             else:
                 status = _("Signed")

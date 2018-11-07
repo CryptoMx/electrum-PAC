@@ -505,7 +505,8 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
         self.config.set_key('currency', 'USD', True)
         self.config.set_key('use_exchange_rate', True, True)
         self.config.set_key('dynamic_fees', False, True)
-        self.config.set_key('fee_per_kb', 1000, True)
+        self.config.set_key('fee_per_kb', 5000000000, True)
+        self.config.set_key('max_fee_rate', 50000000000, True)
 
     @wizard_dialog
     def multisig_dialog(self, run_next):

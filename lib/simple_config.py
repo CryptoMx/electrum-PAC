@@ -125,10 +125,6 @@ class SimpleConfig(PrintError):
         #Hardcoded values
         if key == 'dynamic_fees':
           return False
-        if key == 'fee_per_kb':
-          return 1000
-        if key == 'show_fee':
-          return True
         with self.lock:
             out = self.cmdline_options.get(key)
             if out is None:
