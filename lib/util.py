@@ -416,12 +416,12 @@ def time_difference(distance_in_time, include_seconds):
 
 
 mainnet_block_explorers = {
-    'japan.pacblockexplorer.com': ('http://japan.pacblockexplorer.com:3002/',
+    'explorer.foxrtb.com': ('http://explorer.foxrtb.com',
                        {'tx': 'tx', 'addr': 'address'}),
-    'eu.pacblockexplorer.com': ('http://eu.pacblockexplorer.com:3002',
-                       {'tx': 'tx', 'addr': 'addr'}),
-    'au.pacblockexplorer.com': ('http://au.pacblockexplorer.com:3002',
-                       {'tx': 'tx', 'addr': 'addr'}),
+    'explorer.paccoin.io': ('http://explorer.paccoin.io',
+                       {'tx': 'tx', 'addr': 'address'}),
+    'explorer.paccoin.net': ('http://explorer.paccoin.net',
+                       {'tx': 'tx', 'addr': 'address'}),
     'system default': ('http://usa.pacblockexplorer.com:3002',
                        {'tx': 'tx', 'addr': 'address'}),
 }
