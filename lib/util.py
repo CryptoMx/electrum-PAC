@@ -423,7 +423,7 @@ mainnet_block_explorers = {
     'au.pacblockexplorer.com': ('http://au.pacblockexplorer.com:3002',
                        {'tx': 'tx', 'addr': 'addr'}),
     'system default': ('http://usa.pacblockexplorer.com:3002',
-                       {'tx': 'tx', 'addr': 'addr'}),
+                       {'tx': 'tx', 'addr': 'address'}),
 }
 
 testnet_block_explorers = {
