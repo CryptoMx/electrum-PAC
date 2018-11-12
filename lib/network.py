@@ -48,7 +48,8 @@ DEFAULT_PORTS = {'t':'50001', 's':'50002'}
 
 DEFAULT_SERVERS = {
     'electro-pac.paccoin.io':DEFAULT_PORTS,  
-    'electrum.paccoin.io':DEFAULT_PORTS
+    'electrum.paccoin.io':DEFAULT_PORTS,
+    'pacelectrum-koen.live':DEFAULT_PORTS
 }
 
 def set_testnet():
