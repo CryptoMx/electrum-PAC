@@ -1,12 +1,12 @@
-Index: Electrum-DASH-3.2.3/setup.py
+Index: Electrum_PAC-3.2.3/setup.py
 ===================================================================
---- Electrum-DASH-3.2.3.orig/setup.py
-+++ Electrum-DASH-3.2.3/setup.py
+--- Electrum_PAC-3.2.3.orig/setup.py
++++ Electrum_PAC-3.2.3/setup.py
 @@ -77,6 +77,7 @@ setup(
-         'electrum_dash',
-         'electrum_dash.gui',
-         'electrum_dash.gui.qt',
-+        'electrum_dash.plugins',
-     ] + [('electrum_dash.plugins.'+pkg) for pkg in find_packages('electrum_dash/plugins')],
+         'electrum_pac',
+         'electrum_pac.gui',
+         'electrum_pac.gui.qt',
++        'electrum_pac.plugins',
+     ] + [('electrum_pac.plugins.'+pkg) for pkg in find_packages('electrum_pac/plugins')],
      package_dir={
-         'electrum_dash': 'electrum_dash'
+         'electrum_pac': 'electrum_pac'

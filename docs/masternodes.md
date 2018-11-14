@@ -31,7 +31,7 @@ it to.
 A delegate key can either be one of your Pac-Electrum keys, or an imported key. Either way, your masternode
 and Pac-Electrum will both need to know the private key. (See *Importing Masternode.conf* below.)
 
-To use one of your Pac-Electrum keys as a delegate key, put its address in the `Masternode DASH Address`
+To use one of your Pac-Electrum keys as a delegate key, put its address in the `Masternode Pac Address`
 field of the `View Masternode` tab.
 
 ### IP Address and Protocol Version

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # You probably need to update only this link
-ELECTRUM_GIT_URL=git://github.com/PACCommunity/electrum-PAC.git
+ELECTRUM_GIT_URL=git://github.com/PACCommunity/electrum_PAC.git
 BRANCH=master
-NAME_ROOT=electrum-PAC
+NAME_ROOT=electrum_pac
 
 
 # These settings probably don't need any change
@@ -27,8 +27,8 @@ echo "Last commit: $VERSION"
 
 rm -rf $WINEPREFIX/drive_c/electrum
 
-cp -r ~/pac/electrum-PAC $WINEPREFIX/drive_c/electrum
-cp ~/pac/electrum-PAC/LICENCE .
+cp -r ~/pac/electrum_pac $WINEPREFIX/drive_c/electrum
+cp ~/pac/electrum_pac/LICENCE .
 
 # add python packages (built with make_packages)
 cp -r ../../../packages $WINEPREFIX/drive_c/electrum/

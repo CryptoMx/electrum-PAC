@@ -18,10 +18,10 @@ with open('contrib/requirements/requirements.txt') as f:
 with open('contrib/requirements/requirements-hw.txt') as f:
     requirements_hw = f.read().splitlines()
 
-version = imp.load_source('version', 'electrum_dash/version.py')
+version = imp.load_source('version', 'electrum_pac/version.py')
 
 if sys.version_info[:3] < (3, 4, 0):
-    sys.exit("Error: Dash-Electrum requires Python version >= 3.4.0...")
+    sys.exit("Error: Pac-Electrum requires Python version >= 3.4.0...")
 
 data_files = []
 
@@ -39,8 +39,8 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-PAC.desktop']),
-        (os.path.join(usr_share, icons_dirname), ['icons/electrum-PAC.png'])
+        (os.path.join(usr_share, 'applications/'), ['electrum-pac.desktop']),
+        (os.path.join(usr_share, icons_dirname), ['icons/electrum-pac.png'])
     ]
 
 extras_require = {
@@ -61,7 +61,7 @@ class CustomInstallCommand(install):
             pass
         else:
             try:
-                path = os.path.join(self.install_lib, "electrum_dash/gui/qt/icons_rc.py")
+                path = os.path.join(self.install_lib, "electrum_pac/gui/qt/icons_rc.py")
                 if not os.path.exists(path):
                     subprocess.call(["pyrcc5", "icons.qrc", "-o", path])
             except Exception as e:
@@ -69,26 +69,26 @@ class CustomInstallCommand(install):
 
 
 setup(
-    name="Dash-Electrum",
+    name="Pac-Electrum",
     version=version.ELECTRUM_VERSION,
     install_requires=requirements,
     extras_require=extras_require,
     packages=[
-        'electrum_dash',
-        'electrum_dash.gui',
-        'electrum_dash.gui.qt',
-    ] + [('electrum_dash.plugins.'+pkg) for pkg in find_packages('electrum_dash/plugins')],
+        'electrum_pac',
+        'electrum_pac.gui',
+        'electrum_pac.gui.qt',
+    ] + [('electrum_pac.plugins.'+pkg) for pkg in find_packages('electrum_pac/plugins')],
     package_dir={
-        'electrum_dash': 'electrum_dash'
+        'electrum_pac': 'electrum_pac'
     },
     package_data={
         '': ['*.txt', '*.json', '*.ttf', '*.otf'],
-        'electrum_dash': [
+        'electrum_pac': [
             'wordlist/*.txt',
             'locale/*/LC_MESSAGES/electrum.mo',
         ],
     },
-    scripts=['electrum_dash/electrum-dash'],
+    scripts=['electrum_pac/electrum-pac'],
     data_files=data_files,
     description="Lightweight Pacpay Wallet",
     maintainer="elmora-do",
