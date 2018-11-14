@@ -1,0 +1,20 @@
+{
+    "electro-pac.paccoin.io": {
+        "pruning": "-",
+        "s": "50002",
+        "t": "50001",
+        "version": "1.5"
+    },
+    "electrum.paccoin.io": {
+        "pruning": "-",
+        "s": "50002",
+        "t": "50001",
+        "version": "1.5"
+     },
+    "pacelectrum-koen.live": {
+        "pruning": "-",
+        "s": "50002",
+        "t": "50001",
+        "version": "1.5"
+     }
+}

@@ -49,7 +49,7 @@ is_local = not is_bundle and os.path.exists(os.path.join(script_dir, "setup-rele
 is_android = 'ANDROID_DATA' in os.environ
 
 # move this back to gui/kivy/__init.py once plugins are moved
-os.environ['KIVY_DATA_DIR'] = os.path.abspath(os.path.dirname(__file__)) + '/gui/kivy/data/'
+os.environ['KIVY_DATA_DIR'] = os.path.abspath(os.path.dirname(__file__)) + '/electrum_pac/gui/kivy/data/'
 
 if is_local or is_android:
     sys.path.insert(0, os.path.join(script_dir, 'packages'))
@@ -95,16 +95,18 @@ if is_bundle or is_local or is_android:
     imp.load_module('electrum_PAC', *imp.find_module('lib'))
     imp.load_module('electrum_PAC_gui', *imp.find_module('gui'))
 
-from electrum_PAC import bitcoin, network
-from electrum_PAC import SimpleConfig, Network
-from electrum_PAC.wallet import Wallet, Imported_Wallet
-from electrum_PAC.storage import WalletStorage
-from electrum_PAC.util import print_msg, print_stderr, json_encode, json_decode
-from electrum_PAC.util import set_verbosity, InvalidPassword, check_www_dir
-from electrum_PAC.commands import get_parser, known_commands, Commands, config_variables
-from electrum_PAC import daemon
-from electrum_PAC import keystore
-from electrum_PAC.mnemonic import Mnemonic
+from electrum_pac import bitcoin, util
+from electrum_pac import constants
+from electrum_pac import SimpleConfig, Network
+from electrum_pac.wallet import Wallet, Imported_Wallet
+from electrum_pac import bitcoin, util, constants
+from electrum_pac.storage import WalletStorage, get_derivation_used_for_hw_device_encryption
+from electrum_pac.util import print_msg, print_stderr, json_encode, json_decode, UserCancelled
+from electrum_pac.util import set_verbosity, InvalidPassword
+from electrum_pac.commands import get_parser, known_commands, Commands, config_variables
+from electrum_pac import daemon
+from electrum_pac import keystore
+from electrum_pac.mnemonic import Mnemonic
 
 # get password routine
 def prompt_password(prompt, confirm=True):
@@ -189,7 +191,7 @@ def init_daemon(config_options):
     storage = WalletStorage(config.get_wallet_path())
     if not storage.file_exists():
         print_msg("Error: Wallet file not found.")
-        print_msg("Type 'electrum-PAC create' to create a new wallet, or provide a path to a wallet with the -w option")
+        print_msg("Type 'electrum-pac create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys.exit(0)
     if storage.is_encrypted():
         if config.get('password'):
@@ -224,7 +226,7 @@ def init_cmdline(config_options, server):
 
     if cmd.requires_wallet and not storage.file_exists():
         print_msg("Error: Wallet file not found.")
-        print_msg("Type 'electrum-PAC create' to create a new wallet, or provide a path to a wallet with the -w option")
+        print_msg("Type 'electrum-pac create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys.exit(0)
 
     # important warning
@@ -291,8 +293,8 @@ def run_offline_command(config, config_options):
     return result
 
 def init_plugins(config, gui_name):
-    from electrum_PAC.plugins import Plugins
-    return Plugins(config, is_bundle or is_local or is_android, gui_name)
+    from electrum_pac.plugin import Plugins
+    return Plugins(config, is_local or is_android, gui_name)
 
 if __name__ == '__main__':
 
@@ -347,7 +349,7 @@ if __name__ == '__main__':
     # check uri
     uri = config_options.get('url')
     if uri:
-        if not uri.startswith('bitcoin:'):
+        if not uri.startswith('paccoin:'):
             print_stderr('unknown command:', uri)
             sys.exit(1)
         config_options['url'] = uri
@@ -393,7 +395,7 @@ if __name__ == '__main__':
                 d = daemon.Daemon(config, fd, False)
                 d.start()
                 if config.get('websocket_server'):
-                    from electrum_PAC import websockets
+                    from electrum_pac import websockets
                     websockets.WebSocketServer(config, d.network).start()
                 if config.get('requests_dir'):
                     check_www_dir(config.get('requests_dir'))
@@ -417,7 +419,7 @@ if __name__ == '__main__':
         else:
             cmd = known_commands[cmdname]
             if cmd.requires_network:
-                print_msg("Daemon not running; try 'electrum-PAC daemon start'")
+                print_msg("Daemon not running; try 'electrum-pac daemon start'")
                 sys.exit(1)
             else:
                 init_plugins(config, 'cmdline')

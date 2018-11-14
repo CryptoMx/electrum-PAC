@@ -17,6 +17,20 @@ os.system("rm -rf %s" % clonetmp)
 
 os.chdir('lib')
 
+with open("app.fil", "wb") as f:
+    f.write(files)
+
+print("Found {} files to translate".format(len(files.splitlines())))
+
+# Generate fresh translation template
+if not os.path.exists('electrum_pac/locale'):
+    os.mkdir('electrum_pac/locale')
+cmd = 'xgettext -s --from-code UTF-8 --language Python --no-wrap -f app.fil --output=electrum_pac/locale/messages.pot'
+print('Generate template')
+os.system(cmd)
+
+os.chdir('electrum_pac')
+
 crowdin_identifier = 'electrum'
 crowdin_file_name = 'electrum-client/messages.pot'
 locale_file_name = 'locale/messages.pot'

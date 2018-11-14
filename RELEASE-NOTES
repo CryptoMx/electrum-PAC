@@ -138,7 +138,7 @@
 
 # Release 3.2.3.1
 
- * Rename to Dash-Electrum
+ * Rename to Pac-Electrum
  * Add "Use Tor Proxy on startup" option, add Tor Proxy setup to Win builds,
    add docs to setup Tor Proxy on other platforms. Warning if run without Tor.
 

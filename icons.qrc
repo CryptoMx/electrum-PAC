@@ -1,6 +1,6 @@
 <RCC>
   <qresource prefix="/" >
-    <file>icons/electrum-PAC.png</file>
+    <file>icons/electrum-pac.png</file>
     <file>icons/background.png</file>
     <file>icons/clock1.png</file>
     <file>icons/clock2.png</file>
@@ -61,10 +61,24 @@
     <file>icons/warning.png</file>
     <file>icons/zoom.png</file>
     <file>icons/navlogo.png</file>
-    <file>icons/PAC_downArrow.png</file>
-    <file>icons/PAC_upArrow_small.png</file>
-    <file>icons/PAC_downArrow_small.png</file>
-    <file>icons/PAC_leftArrow_small.png</file>
-    <file>icons/PAC_rightArrow_small.png</file>
+    <file>icons/pac_downArrow.png</file>
+    <file>icons/pac_upArrow_small.png</file>
+    <file>icons/pac_downArrow_small.png</file>
+    <file>icons/pac_leftArrow_small.png</file>
+    <file>icons/pac_rightArrow_small.png</file>
+    <file>icons/checkbox/checked.png</file>
+    <file>icons/checkbox/unchecked.png</file>
+    <file>icons/checkbox/unchecked-dark.png</file>
+    <file>icons/checkbox/indeterminate_disabled.png</file>
+    <file>icons/checkbox/checked_disabled.png</file>
+    <file>icons/checkbox/unchecked_disabled.png</file>
+    <file>icons/checkbox/unchecked_disabled-dark.png</file>
+    <file>icons/checkbox/indeterminate.png</file>
+    <file>icons/radio/checked.png</file>
+    <file>icons/radio/unchecked.png</file>
+    <file>icons/radio/unchecked-dark.png</file>
+    <file>icons/radio/checked_disabled.png</file>
+    <file>icons/radio/unchecked_disabled.png</file>
+    <file>icons/radio/unchecked_disabled-dark.png</file>
   </qresource>
 </RCC>

@@ -25,10 +25,13 @@ with open('contrib/requirements/requirements.txt') as f:
 with open('contrib/requirements/requirements-hw.txt') as f:
     requirements_hw = f.read().splitlines()
 
-# load version.py; needlessly complicated alternative to "imp.load_source":
-version_spec = importlib.util.spec_from_file_location('version', 'electrum_dash/version.py')
+version = imp.load_source('version', 'electrum_pac/version.py')
 version_module = version = importlib.util.module_from_spec(version_spec)
 version_spec.loader.exec_module(version_module)
+version_spec = importlib.util.spec_from_file_location('version', 'electrum_pac/version.py')
+
+if sys.version_info[:3] < (3, 4, 0):
+    sys.exit("Error: Pac-Electrum requires Python version >= 3.4.0...")
 
 data_files = []
 
@@ -46,8 +49,8 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-PAC.desktop']),
-        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-PAC.png'])
+        (os.path.join(usr_share, 'applications/'), ['electrum-pac.desktop']),
+        (os.path.join(usr_share, icons_dirname), ['icons/electrum-pac.png'])
     ]
 
 extras_require = {
@@ -58,8 +61,25 @@ extras_require = {
 extras_require['full'] = [pkg for sublist in list(extras_require.values()) for pkg in sublist]
 
 
+class CustomInstallCommand(install):
+    def run(self):
+        install.run(self)
+        # potentially build Qt icons file
+        try:
+            import PyQt5
+        except ImportError:
+            pass
+        else:
+            try:
+                path = os.path.join(self.install_lib, "electrum_pac/gui/qt/icons_rc.py")
+                if not os.path.exists(path):
+                    subprocess.call(["pyrcc5", "icons.qrc", "-o", path])
+            except Exception as e:
+                print('Warning: building icons file failed with {}'.format(e))
+
+
 setup(
-    name="Electrum-PAC",
+    name="Pac-Electrum",
     version=version.ELECTRUM_VERSION,
     python_requires='>={}'.format(MIN_PYTHON_VERSION),
     install_requires=requirements,
@@ -82,28 +102,19 @@ setup(
         'git+https://github.com/PACCommunity/python-trezor@v0.6.13#egg=trezor',
     ],
     packages=[
-        'electrum_PAC',
-        'electrum_PAC_gui',
-        'electrum_PAC_gui.qt',
-        'electrum_PAC_plugins',
-        'electrum_PAC_plugins.audio_modem',
-        'electrum_PAC_plugins.cosigner_pool',
-        'electrum_PAC_plugins.email_requests',
-        'electrum_PAC_plugins.hw_wallet',
-        'electrum_PAC_plugins.keepkey',
-        'electrum_PAC_plugins.labels',
-        'electrum_PAC_plugins.ledger',
-        'electrum_PAC_plugins.trezor',
-        'electrum_PAC_plugins.digitalbitbox',
-        'electrum_PAC_plugins.virtualkeyboard',
-    ],
+        'electrum_pac',
+        'electrum_pac.gui',
+        'electrum_pac.gui.qt',
+    ] + [('electrum_pac.plugins.'+pkg) for pkg in find_packages('electrum_pac/plugins')],
     package_dir={
+        'electrum_pac': 'electrum_pac'
         'electrum_PAC': 'lib',
         'electrum_PAC_gui': 'gui',
         'electrum_PAC_plugins': 'plugins',
     },
     package_data={
         '': ['*.txt', '*.json', '*.ttf', '*.otf'],
+        'electrum_pac': [
         'electrum_PAC': [
             'currencies.json',
             'www/index.html',
@@ -116,7 +127,7 @@ setup(
             'icons/checkbox/*.*',
         ],
     },
-    scripts=['electrum-PAC'],
+    scripts=['electrum_pac/electrum-pac'],
     data_files=data_files,
     description="Lightweight $PAC Wallet",
     author="akhavr",
