@@ -1,7 +1,7 @@
 <RCC>
   <qresource prefix="/" >
     <file>icons/electrum-pac.png</file>
-    <file>icons/background.png</file>
+    <file>icons/background.jpg</file>
     <file>icons/clock1.png</file>
     <file>icons/clock2.png</file>
     <file>icons/clock3.png</file>

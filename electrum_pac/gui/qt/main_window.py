@@ -932,7 +932,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         coins_content_amounts.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         coins_content_amounts_layout = QVBoxLayout(coins_content_amounts)
         self.dashboard_pac_balance_label = pac_balance_label = QLabel("0 $PAC")
-        pac_balance_label.setObjectName("normal_label")
+        pac_balance_label.setObjectName("important_label")
         pac_balance_label.setAlignment(Qt.AlignRight)
         pac_balance_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.dashboard_btc_balance_label = btc_balance_label = QLabel("0 BTC")
@@ -940,7 +940,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         btc_balance_label.setAlignment(Qt.AlignRight)
         btc_balance_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.dashboard_fiat_balance_label = fiat_balance_label = QLabel("0 USD")
-        fiat_balance_label.setObjectName("normal_label")
+        fiat_balance_label.setObjectName("important_label")
         fiat_balance_label.setAlignment(Qt.AlignRight)
         fiat_balance_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         coins_content_amounts_layout.setSpacing(50)
@@ -1057,6 +1057,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         self.save_request_button = QPushButton(_('Save'))
         self.save_request_button.clicked.connect(self.save_payment_request)
+        self.save_request_button.setObjectName("main")
 
         self.new_request_button = QPushButton(_('New'))
         self.new_request_button.clicked.connect(self.new_payment_request)
@@ -1456,6 +1457,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.preview_button = EnterButton(_("Preview"), self.do_preview)
         self.preview_button.setToolTip(_('Display the details of your transaction before signing it.'))
         self.send_button = EnterButton(_("Send"), self.do_send)
+        self.send_button.setObjectName("main")
         self.clear_button = EnterButton(_("Clear"), self.do_clear)
         buttons = QHBoxLayout()
         buttons.addStretch(1)

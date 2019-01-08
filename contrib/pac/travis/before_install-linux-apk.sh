@@ -6,5 +6,5 @@ if [[ -z $TRAVIS_TAG ]]; then
   exit 1
 fi
 
-docker pull paccommunity/electrum-pac-winebuild:Linux
-docker pull paccommunity/electrum-pac-winebuild:KivyPy36
+docker pull zebralucky/electrum-dash-winebuild:Linux
+docker pull zebralucky/electrum-dash-winebuild:KivyPy36

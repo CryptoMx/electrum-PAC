@@ -190,6 +190,7 @@ class NetworkChoiceLayout(object):
         self.tor_proxy = None
 
         self.tabs = tabs = QTabWidget()
+        self.tabs.setObjectName("inverted_font_color")
         server_tab = QWidget()
         proxy_tab = QWidget()
         blockchain_tab = QWidget()

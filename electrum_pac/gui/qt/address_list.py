@@ -69,6 +69,8 @@ class AddressList(MyTreeWidget):
             headers.extend([_(fx.get_currency()+' Balance')])
         headers.extend([_('Tx')])
         self.update_headers(headers)
+        self.header().setSectionResizeMode(len(headers) - 1, QHeaderView.Fixed)
+        self.header().resizeSection(len(headers) - 1, 50)
 
     def toggle_change(self, state):
         if state == self.show_change:
@@ -124,16 +126,17 @@ class AddressList(MyTreeWidget):
             # setup column 0
             if self.wallet.is_change(address):
                 address_item.setText(0, _('change'))
-                address_item.setBackground(0, ColorScheme.YELLOW.as_color(True))
+                address_item.setBackground(0, QBrush(Qt.darkYellow))
             else:
                 address_item.setText(0, _('receiving'))
-                address_item.setBackground(0, ColorScheme.GREEN.as_color(True))
+                address_item.setBackground(0, QBrush(Qt.darkGreen))
+
             address_item.setData(0, Qt.UserRole, address)  # column 0; independent from address column
             # setup column 1
             if self.wallet.is_frozen(address):
-                address_item.setBackground(1, ColorScheme.BLUE.as_color(True))
+                address_item.setBackground(1, QBrush(Qt.darkBlue))
             if self.wallet.is_beyond_limit(address):
-                address_item.setBackground(1, ColorScheme.RED.as_color(True))
+                address_item.setBackground(1, QBrush(Qt.darkRed))
             # add item
             self.addChild(address_item)
             if address == current_address:

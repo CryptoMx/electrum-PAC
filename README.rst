@@ -13,8 +13,8 @@ Pac-Electrum - Lightweight Pacpay client
   Language: Python (>= 3.6)
 
 
-.. image:: https://travis-ci.org/PACCommunity/electrum-pac.svg?branch=master
-    :target: https://travis-ci.org/PACCommunity/electrum-pac
+.. image:: https://travis-ci.org/PACCommunity/electrum-PAC.svg?branch=master
+    :target: https://travis-ci.org/PACCommunity/electrum-PAC
     :alt: Build Status
 
 

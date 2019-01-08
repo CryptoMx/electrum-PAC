@@ -33,6 +33,15 @@ class UTXOList(MyTreeWidget):
         MyTreeWidget.__init__(self, parent, self.create_menu, [ _('Address'), _('Label'), _('Amount'), _('Height'), _('Output point')], 1)
         self.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.setSortingEnabled(True)
+        # Set default column width just in case there is no data
+        self.header().setSectionResizeMode(0, QHeaderView.Fixed)
+        self.header().resizeSection(0, 100)
+        self.header().setSectionResizeMode(2, QHeaderView.Fixed)
+        self.header().resizeSection(2, 100)
+        self.header().setSectionResizeMode(3, QHeaderView.Fixed)
+        self.header().resizeSection(3, 70)
+        self.header().setSectionResizeMode(4, QHeaderView.Fixed)
+        self.header().resizeSection(4, 100)
 
     def get_name(self, x):
         return x.get('prevout_hash') + ":%d"%x.get('prevout_n')
@@ -42,6 +51,10 @@ class UTXOList(MyTreeWidget):
         item = self.currentItem()
         self.clear()
         self.utxos = self.wallet.get_utxos()
+        # Resize to content when there are data
+        if len(self.utxos) > 0:
+            self.header().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+            self.header().setSectionResizeMode(2, QHeaderView.ResizeToContents)
         for x in self.utxos:
             address = x.get('address')
             height = x.get('height')

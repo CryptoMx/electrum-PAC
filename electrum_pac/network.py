@@ -241,7 +241,7 @@ class Network(Logger):
         self.config = SimpleConfig(config) if isinstance(config, dict) else config  # type: SimpleConfig
 
         # Autodetect and enable Tor proxy on Network init
-        self.tor_docs_uri = ('https://github.com/PACCommunity/electrum_PAC/'
+        self.tor_docs_uri = ('https://github.com/PACCommunity/electrum-PAC/'
                              'blob/%s/docs/tor.md' % ELECTRUM_VERSION)
         self.tor_docs_title = 'Tor Setup Docs'
         self.tor_docs_uri_qt = ('<br><br><a href="%s">%s</a>' %
