@@ -6,7 +6,7 @@ if [[ -z $TRAVIS_TAG ]]; then
   exit 1
 fi
 
-BUILD_REPO_URL=https://github.com/PACCommunity/electrum_PAC.git
+BUILD_REPO_URL=https://github.com/PACCommunity/electrum-PAC.git
 
 cd build
 
@@ -16,7 +16,7 @@ cd electrum-pac
 
 export PY36BINDIR=/Library/Frameworks/Python.framework/Versions/3.6/bin/
 export PATH=$PATH:$PY36BINDIR
-source ./contrib/pac/travis/electrum_pac_version_env.sh;
+source ./contrib/pac/travis/electrum_PAC_version_env.sh;
 echo wine build version is $PAC_ELECTRUM_VERSION
 
 sudo pip3 install --upgrade pip

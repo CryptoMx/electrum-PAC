@@ -300,8 +300,8 @@ class MasternodeOutputsTab(QWidget):
         valid_outputs_box.addWidget(QLabel(_('Masternode Outputs:')))
         valid_outputs_box.addWidget(self.valid_outputs_list)
 
-        #vbox.addLayout(util.Buttons(include_frozen_checkbox, self.scan_outputs_button))
-        vbox.addLayout(util.Buttons(self.scan_outputs_button))
+        vbox.addLayout(util.Buttons(include_frozen_checkbox, self.scan_outputs_button))
+        #vbox.addLayout(util.Buttons(self.scan_outputs_button))
         vbox.addLayout(valid_outputs_box)
 
         vbox.addWidget(self.collateral_edit)
@@ -321,7 +321,7 @@ class MasternodeOutputsTab(QWidget):
             self.valid_outputs_list.add_outputs(coins)
         else:
             self.status_edit.setText(_('No 500000 $PAC outputs were found.'))
-            self.status_edit.setStyleSheet(util.RED_FG)
+            self.status_edit.setStyleSheet(util.ColorScheme.RED.as_stylesheet())
 
     def set_output(self, vin):
         """Set the selected output."""

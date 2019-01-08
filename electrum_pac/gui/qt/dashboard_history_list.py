@@ -69,8 +69,16 @@ class DashboardHistoryList(MyTreeWidget, AcceptFileDragDrop):
     def refresh_headers(self):
         headers = ['', '', _('Date'), _('Description') , _('Amount')]
         self.update_headers(headers)
-        self.header().setSectionResizeMode(0, QHeaderView.ResizeToContents)
-        self.header().setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        # Set fixed width for the first column
+        self.header().setSectionResizeMode(0, QHeaderView.Fixed)
+        self.header().resizeSection(0, 20)
+        # Set default column width just in case there is no data
+        self.header().setSectionResizeMode(1, QHeaderView.Fixed)
+        self.header().resizeSection(1, 100)
+        self.header().setSectionResizeMode(2, QHeaderView.Fixed)
+        self.header().resizeSection(2, 100)
+        self.header().setSectionResizeMode(4, QHeaderView.Fixed)
+        self.header().resizeSection(4, 100)
 
     def get_domain(self):
         '''Replaced in address_dialog.py'''
@@ -94,6 +102,11 @@ class DashboardHistoryList(MyTreeWidget, AcceptFileDragDrop):
         if fx: fx.history_used_spot = False
         blue_brush = QBrush(QColor("#1E1EFF"))
         red_brush = QBrush(QColor("#BC1E1E"))
+        # Resize to content when there are data
+        if len(self.transactions) > 0:
+            self.header().setSectionResizeMode(1, QHeaderView.ResizeToContents)
+            self.header().setSectionResizeMode(2, QHeaderView.ResizeToContents)
+            self.header().setSectionResizeMode(4, QHeaderView.ResizeToContents)
         for tx_item in self.transactions:
             tx_hash = tx_item['txid']
             height = tx_item['height']

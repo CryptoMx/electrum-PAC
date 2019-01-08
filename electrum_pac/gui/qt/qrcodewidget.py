@@ -63,7 +63,7 @@ class QRCodeWidget(QWidget):
         qp.begin(self)
         r = qp.viewport()
 
-        margin = 10
+        margin = 2
         framesize = min(r.width(), r.height())
         boxsize = int( (framesize - 2*margin)/k )
         size = k*boxsize

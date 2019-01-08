@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./contrib/pac/travis/electrum_pac_version_env.sh;
+source ./contrib/pac/travis/electrum_PAC_version_env.sh;
 echo wine build version is $PAC_ELECTRUM_VERSION
 
 mv /opt/zbarw $WINEPREFIX/drive_c/
@@ -11,10 +11,10 @@ mv /opt/libsecp256k1/libsecp256k1-0.dll \
    /opt/libsecp256k1/libsecp256k1.dll
 mv /opt/libsecp256k1 $WINEPREFIX/drive_c/
 
-cd $WINEPREFIX/drive_c/electrum-pac
+cd $WINEPREFIX/drive_c/electrum-PAC
 
 rm -rf build
-rm -rf dist/electrum-pac
+rm -rf dist/electrum-PAC
 
 cp contrib/pac/deterministic.spec .
 cp contrib/pac/pyi_runtimehook.py .

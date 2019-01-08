@@ -6,20 +6,20 @@ if [[ -z $TRAVIS_TAG ]]; then
   exit 1
 fi
 
-BUILD_REPO_URL=https://github.com/PACCommunity/electrum_PAC.git
+BUILD_REPO_URL=https://github.com/PACCommunity/electrum-PAC.git
 
 cd build
 
-git clone --branch $TRAVIS_TAG $BUILD_REPO_URL electrum-pac
+git clone --branch $TRAVIS_TAG $BUILD_REPO_URL electrum-PAC
 
-mkdir -p electrum-pac/dist
-wget -O electrum-pac/dist/tor-proxy-setup.exe \
+mkdir -p electrum-PAC/dist
+wget -O electrum-PAC/dist/tor-proxy-setup.exe \
     https://github.com/zebra-lucky/tor-proxy/releases/download/0.3.3.9/tor-proxy-0.3.3.9-setup.exe
 
 docker run --rm \
     -v $(pwd):/opt \
-    -w /opt/electrum-pac \
-    -t paccommunity/electrum-pac-winebuild:Linux /opt/build_linux.sh
+    -w /opt/electrum-PAC \
+    -t zebralucky/electrum-dash-winebuild:Linux /opt/build_linux.sh
 
 sudo find . -name '*.po' -delete
 sudo find . -name '*.pot' -delete
@@ -42,9 +42,9 @@ docker run --rm \
     -e WINEPREFIX=$WINEPREFIX \
     -e PYHOME=$PYHOME \
     -v $(pwd):/opt \
-    -v $(pwd)/electrum-pac/:$WINEPREFIX/drive_c/electrum-pac \
-    -w /opt/electrum-pac \
-    -t paccommunity/electrum-pac-winebuild:WinePy36 /opt/build_wine.sh
+    -v $(pwd)/electrum-PAC/:$WINEPREFIX/drive_c/electrum-PAC \
+    -w /opt/electrum-PAC \
+    -t zebralucky/electrum-dash-winebuild:WinePy36 /opt/build_wine.sh
 
 export WINEARCH=win64
 export WINEPREFIX=/root/.wine-64
@@ -64,6 +64,6 @@ docker run --rm \
     -e WINEPREFIX=$WINEPREFIX \
     -e PYHOME=$PYHOME \
     -v $(pwd):/opt \
-    -v $(pwd)/electrum-pac/:$WINEPREFIX/drive_c/electrum-pac \
-    -w /opt/electrum-pac \
-    -t paccommunity/electrum-pac-winebuild:WinePy36 /opt/build_wine.sh
+    -v $(pwd)/electrum-PAC/:$WINEPREFIX/drive_c/electrum-PAC \
+    -w /opt/electrum-PAC \
+    -t zebralucky/electrum-dash-winebuild:WinePy36 /opt/build_wine.sh

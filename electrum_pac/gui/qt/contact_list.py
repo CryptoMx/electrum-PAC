@@ -42,7 +42,9 @@ class ContactList(MyTreeWidget):
         MyTreeWidget.__init__(self, parent, self.create_menu, [_('Name'), _('Address')], 0, [0])
         self.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.setSortingEnabled(True)
-        self.header().setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        # Set default column width just in case there is no data
+        self.header().setSectionResizeMode(1, QHeaderView.Fixed)
+        self.header().resizeSection(1, 100)
 
     def on_permit_edit(self, item, column):
         # openalias items shouldn't be editable
@@ -89,6 +91,9 @@ class ContactList(MyTreeWidget):
         item = self.currentItem()
         current_key = item.data(0, Qt.UserRole) if item else None
         self.clear()
+        # Resize to content when there are data
+        if len(self.parent.contacts.keys()) > 0:
+            self.header().setSectionResizeMode(1, QHeaderView.ResizeToContents)
         for key in sorted(self.parent.contacts.keys()):
             _type, name = self.parent.contacts[key]
             item = QTreeWidgetItem([name, key])

@@ -9,8 +9,8 @@ Pac-Electrum - Lightweight Pacpay client
   Homepage: https://electrum.paccoin.io/
 
 
-.. image:: https://travis-ci.org/PACCommunity/electrum-pac.svg?branch=master
-    :target: https://travis-ci.org/PACCommunity/electrum-pac
+.. image:: https://travis-ci.org/PACCommunity/electrum-PAC.svg?branch=master
+    :target: https://travis-ci.org/PACCommunity/electrum-PAC
     :alt: Build Status
 
 

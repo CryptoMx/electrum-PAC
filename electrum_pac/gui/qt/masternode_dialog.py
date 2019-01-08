@@ -207,8 +207,15 @@ class MasternodesWidget(QWidget):
         header = self.view.horizontalHeader()
         header.setSectionResizeMode(MasternodesModel.ALIAS, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(MasternodesModel.VIN, QHeaderView.Stretch)
-        header.setSectionResizeMode(MasternodesModel.COLLATERAL, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(MasternodesModel.DELEGATE, QHeaderView.ResizeToContents)
+        if len(self.model.masternodes) > 0:
+            header.setSectionResizeMode(MasternodesModel.COLLATERAL, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(MasternodesModel.DELEGATE, QHeaderView.ResizeToContents)
+        else:
+            header.setSectionResizeMode(MasternodesModel.COLLATERAL, QHeaderView.Fixed)
+            header.resizeSection(MasternodesModel.COLLATERAL, 110)
+            header.setSectionResizeMode(MasternodesModel.DELEGATE, QHeaderView.Fixed)
+            header.resizeSection(MasternodesModel.DELEGATE, 100)
+
         self.view.verticalHeader().setVisible(False)
 
         self.view.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -244,6 +251,8 @@ class MasternodesWidget(QWidget):
 
     def refresh_items(self):
         self.model.dataChanged.emit(QModelIndex(), QModelIndex())
+        self.view.horizontalHeader().setSectionResizeMode(MasternodesModel.COLLATERAL, QHeaderView.ResizeToContents)
+        self.view.horizontalHeader().setSectionResizeMode(MasternodesModel.DELEGATE, QHeaderView.ResizeToContents)
 
     def add_masternode(self, masternode, save = True):
         self.model.add_masternode(masternode, save=save)
@@ -279,6 +288,7 @@ class MasternodeDialog(QDialog, PrintError):
 
     def create_layout(self):
         self.masternodes_widget = MasternodesWidget(self.manager)
+        self.masternodes_widget.setObjectName("inverted_font_color")
 
         self.tabs = QTabWidget()
         self.tabs.addTab(self.create_view_masternode_tab(), _('View Masternode'))
