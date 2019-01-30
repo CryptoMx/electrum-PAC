@@ -1,23 +1,23 @@
-name: electrum
+name: electrum-pac
 version: master
-summary: Bitcoin thin client
+summary: Pacpay thin client
 description: |
-  Lightweight Bitcoin client
+  Lightweight Pacpay client
 
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: strict
 
 apps:
-  electrum:
-    command: desktop-launch electrum
+  electrum-pac:
+    command: desktop-launch electrum-pac
     plugs: [network, network-bind, x11, unity7]
 
 parts:
-  electrum:
+  electrum-pac:
     source: .
     plugin: python
-    python-version: python2
-    stage-packages: [python-qt4]
-    build-packages: [pyqt4-dev-tools]
-    install: pyrcc4 icons.qrc -o $SNAPCRAFT_PART_INSTALL/lib/python2.7/site-packages/electrum_gui/qt/icons_rc.py
-    after: [desktop-qt4]
+    python-version: python3
+    stage-packages: [python3-pyqt5]
+    build-packages: [pyqt5-dev-tools]
+    install: pyrcc5 icons.qrc -o $SNAPCRAFT_PART_INSTALL/lib/python3.5/site-packages/electrum_pac/gui/qt/icons_rc.py
+    after: [desktop-qt5]

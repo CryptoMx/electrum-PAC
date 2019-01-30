@@ -1,7 +1,7 @@
 <RCC>
   <qresource prefix="/" >
-    <file>icons/electrum-PAC.png</file>
-    <file>icons/background.png</file>
+    <file>icons/electrum-pac.png</file>
+    <file>icons/background.jpg</file>
     <file>icons/clock1.png</file>
     <file>icons/clock2.png</file>
     <file>icons/clock3.png</file>
@@ -14,7 +14,10 @@
     <file>icons/expired.png</file>
     <file>icons/electrum_light_icon.png</file>
     <file>icons/electrum_dark_icon.png</file>
+    <file>icons/electrumb.png</file>
+    <file>icons/eye1.png</file>
     <file>icons/file.png</file>
+    <file>icons/info.png</file>
     <file>icons/keepkey.png</file>
     <file>icons/keepkey_unpaired.png</file>
     <file>icons/key.png</file>
@@ -23,8 +26,14 @@
     <file>icons/lock.png</file>
     <file>icons/microphone.png</file>
     <file>icons/network.png</file>
+    <file>icons/offline_tx.png</file>
+    <file>icons/revealer.png</file>
+    <file>icons/revealer_c.png</file>
     <file>icons/qrcode.png</file>
+    <file>icons/qrcode_white.png</file>
     <file>icons/preferences.png</file>
+    <file>icons/safe-t_unpaired.png</file>
+    <file>icons/safe-t.png</file>
     <file>icons/seed.png</file>
     <file>icons/status_connected.png</file>
     <file>icons/status_connected_proxy.png</file>
@@ -61,10 +70,24 @@
     <file>icons/warning.png</file>
     <file>icons/zoom.png</file>
     <file>icons/navlogo.png</file>
-    <file>icons/PAC_downArrow.png</file>
-    <file>icons/PAC_upArrow_small.png</file>
-    <file>icons/PAC_downArrow_small.png</file>
-    <file>icons/PAC_leftArrow_small.png</file>
-    <file>icons/PAC_rightArrow_small.png</file>
+    <file>icons/pac_downArrow.png</file>
+    <file>icons/pac_upArrow_small.png</file>
+    <file>icons/pac_downArrow_small.png</file>
+    <file>icons/pac_leftArrow_small.png</file>
+    <file>icons/pac_rightArrow_small.png</file>
+    <file>icons/checkbox/checked.png</file>
+    <file>icons/checkbox/unchecked.png</file>
+    <file>icons/checkbox/unchecked-dark.png</file>
+    <file>icons/checkbox/indeterminate_disabled.png</file>
+    <file>icons/checkbox/checked_disabled.png</file>
+    <file>icons/checkbox/unchecked_disabled.png</file>
+    <file>icons/checkbox/unchecked_disabled-dark.png</file>
+    <file>icons/checkbox/indeterminate.png</file>
+    <file>icons/radio/checked.png</file>
+    <file>icons/radio/unchecked.png</file>
+    <file>icons/radio/unchecked-dark.png</file>
+    <file>icons/radio/checked_disabled.png</file>
+    <file>icons/radio/unchecked_disabled.png</file>
+    <file>icons/radio/unchecked_disabled-dark.png</file>
   </qresource>
 </RCC>
