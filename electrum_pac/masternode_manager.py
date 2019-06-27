@@ -3,7 +3,6 @@ import base64
 import threading
 from decimal import Decimal
 
-<<<<<<< refs/remotes/upstream/master:electrum_dash/masternode_manager.py
 from . import bitcoin
 from . import ecc
 from .blockchain import hash_header
@@ -13,17 +12,15 @@ from .util import AlreadyHaveAddress, bfh
 from .util import format_satoshis_plain
 from .logging import get_logger
 
-
 _logger = get_logger(__name__)
 
-=======
 import bitcoin
 from blockchain import Blockchain
 from masternode import MasternodeAnnounce, NetworkAddress
 from masternode_budget import BudgetProposal, BudgetVote
 from electrum_PAC.util import AlreadyHaveAddress, print_error
 from electrum_PAC.util import format_satoshis_plain
->>>>>>> Rebranding for PAC:lib/masternode_manager.py
+
 
 BUDGET_FEE_CONFIRMATIONS = 6
 BUDGET_FEE_TX = 5 * bitcoin.COIN

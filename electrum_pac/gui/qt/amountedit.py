@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from decimal import Decimal
-<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/amountedit.py
 
 from PyQt5.QtCore import pyqtSignal, Qt
 from PyQt5.QtGui import QPalette, QPainter, QColor
 from PyQt5.QtWidgets import (QLineEdit, QStyle, QStyleOptionFrame)
 
-from electrum_pac.util import (format_satoshis_plain, decimal_point_to_base_unit_name,
+from electrum_PAC.util import (format_satoshis_plain, decimal_point_to_base_unit_name,
                                FEERATE_PRECISION, quantize_feerate)
 from .util import ColorScheme
 
-=======
-from electrum_PAC.util import format_satoshis_plain
->>>>>>> Rebranding for PAC:gui/qt/amountedit.py
 
 class MyLineEdit(QLineEdit):
     frozen = pyqtSignal()
@@ -91,9 +87,8 @@ class BTCAmountEdit(AmountEdit):
         self.decimal_point = decimal_point
 
     def _base_unit(self):
-<<<<<<< refs/remotes/upstream/master:electrum_dash/gui/qt/amountedit.py
         return decimal_point_to_base_unit_name(self.decimal_point())
-=======
+
         p = self.decimal_point()
         assert p in [2, 5, 8]
         if p == 8:
@@ -103,7 +98,7 @@ class BTCAmountEdit(AmountEdit):
         if p == 2:
             return 'u$PAC'
         raise Exception('Unknown base unit')
->>>>>>> Rebranding for PAC:gui/qt/amountedit.py
+
 
     def get_amount(self):
         try:

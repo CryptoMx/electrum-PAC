@@ -25,13 +25,18 @@ with open('contrib/requirements/requirements.txt') as f:
 with open('contrib/requirements/requirements-hw.txt') as f:
     requirements_hw = f.read().splitlines()
 
-version = imp.load_source('version', 'electrum_pac/version.py')
+
+# load version.py; needlessly complicated alternative to "imp.load_source":
+version_spec = importlib.util.spec_from_file_location('version', 'electrum_pac/version.py')
 version_module = version = importlib.util.module_from_spec(version_spec)
 version_spec.loader.exec_module(version_module)
-version_spec = importlib.util.spec_from_file_location('version', 'electrum_pac/version.py')
+#version = imp.load_source('version', 'electrum_pac/version.py')
+#version_module = version = importlib.util.module_from_spec(version_spec)
+#version_spec.loader.exec_module(version_module)
+#version_spec = importlib.util.spec_from_file_location('version', 'electrum_pac/version.py')
 
-if sys.version_info[:3] < (3, 4, 0):
-    sys.exit("Error: Pac-Electrum requires Python version >= 3.4.0...")
+#if sys.version_info[:3] < (3, 4, 0):
+#    sys.exit("Error: Pac-Electrum requires Python version >= 3.4.0...")
 
 data_files = []
 
@@ -84,19 +89,7 @@ setup(
     python_requires='>={}'.format(MIN_PYTHON_VERSION),
     install_requires=requirements,
     extras_require=extras_require,
-    install_requires=[
-        'pyaes',
-        'ecdsa>=0.9',
-        'pbkdf2',
-        'requests',
-        'qrcode>=5.3,<6',
-        'protobuf',
-        'dnspython',
-        'jsonrpclib',
-        'PySocks>=1.6.6',
-        'trezor>=0.6.3',
-        'x11_hash>=1.4',
-    ],
+    #install_requires=['pyaes','ecdsa>=0.9','pbkdf2','requests','qrcode>=5.3,<6','protobuf','dnspython','jsonrpclib','PySocks>=1.6.6','trezor>=0.6.3','x11_hash>=1.4',],
     dependency_links=[
         'git+https://github.com/PACCommunity/x11_hash@1.4#egg=x11_hash-1.4',
         'git+https://github.com/PACCommunity/python-trezor@v0.6.13#egg=trezor',
@@ -108,14 +101,13 @@ setup(
     ] + [('electrum_pac.plugins.'+pkg) for pkg in find_packages('electrum_pac/plugins')],
     package_dir={
         'electrum_pac': 'electrum_pac'
-        'electrum_PAC': 'lib',
-        'electrum_PAC_gui': 'gui',
-        'electrum_PAC_plugins': 'plugins',
+        #'electrum_pac': 'lib',
+        #'electrum_pac_gui': 'gui',
+        #'electrum_pac_plugins': 'plugins',
     },
     package_data={
         '': ['*.txt', '*.json', '*.ttf', '*.otf'],
         'electrum_pac': [
-        'electrum_PAC': [
             'currencies.json',
             'www/index.html',
             'wordlist/*.txt',

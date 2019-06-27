@@ -35,7 +35,6 @@ from .crypto import hmac_oneshot
 from . import version
 from .logging import Logger
 
-
 # http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/e_asia.html
 CJK_INTERVALS = [
     (0x4E00, 0x9FFF, 'CJK Unified Ideographs'),

@@ -29,26 +29,21 @@ from xmlrpc.client import ServerProxy
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QPushButton
 
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/cosigner_pool/qt.py
-from electrum_dash import util, keystore, ecc, crypto
-from electrum_dash import transaction
-from electrum_dash.bip32 import BIP32Node
-from electrum_dash.plugin import BasePlugin, hook
-from electrum_dash.i18n import _
-from electrum_dash.wallet import Multisig_Wallet
-from electrum_dash.util import bh2u, bfh
-
-from electrum_dash.gui.qt.transaction_dialog import show_transaction
-from electrum_dash.gui.qt.util import WaitingDialog
-=======
-from electrum_PAC import bitcoin, util
+from electrum_PAC import util, keystore, ecc, crypto
 from electrum_PAC import transaction
+from electrum_PAC.bip32 import BIP32Node
+from electrum_PAC.plugin import BasePlugin, hook
 from electrum_PAC.plugins import BasePlugin, hook
+
 from electrum_PAC.i18n import _
 from electrum_PAC.wallet import Multisig_Wallet
+from electrum_PAC.util import bh2u, bfh
+from electrum_PAC.gui.qt.transaction_dialog import show_transaction
+from electrum_PAC.gui.qt.util import WaitingDialog
 
-from electrum_PAC_gui.qt.transaction_dialog import show_transaction
->>>>>>> Rebranding for PAC:plugins/cosigner_pool/qt.py
+
+from electrum_PAC import bitcoin, util
+
 
 import sys
 import traceback

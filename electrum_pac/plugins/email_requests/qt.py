@@ -41,23 +41,16 @@ from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QGridLayout, QLineEdit,
                              QInputDialog)
 
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/email_requests/qt.py
-from electrum_dash.gui.qt.util import (EnterButton, Buttons, CloseButton,
+from electrum_PAC.gui.qt.util import (EnterButton, Buttons, CloseButton,
                                        OkButton, WindowModalDialog,
                                        get_parent_main_window)
 
-from electrum_dash.plugin import BasePlugin, hook
-from electrum_dash.paymentrequest import PaymentRequest
-from electrum_dash.i18n import _
-from electrum_dash.logging import Logger
-=======
-from electrum_PAC.plugins import BasePlugin, hook
+from electrum_PAC.plugin import BasePlugin, hook
 from electrum_PAC.paymentrequest import PaymentRequest
 from electrum_PAC.i18n import _
-from electrum_PAC_gui.qt.util import EnterButton, Buttons, CloseButton
-from electrum_PAC_gui.qt.util import OkButton, WindowModalDialog
+from electrum_PAC.logging import Logger
+#from electrum_PAC.plugins import BasePlugin, hook
 
->>>>>>> Rebranding for PAC:plugins/email_requests/qt.py
 
 
 class Processor(threading.Thread, Logger):
@@ -123,13 +116,10 @@ class Processor(threading.Thread, Logger):
         msg['From'] = self.username
         part = MIMEBase('application', "PAC-paymentrequest")
         part.set_payload(payment_request)
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/email_requests/qt.py
         encode_base64(part)
-        part.add_header('Content-Disposition', 'attachment; filename="payreq.dash"')
-=======
-        Encoders.encode_base64(part)
+        #Encoders.encode_base64(part)
         part.add_header('Content-Disposition', 'attachment; filename="payreq.PAC"')
->>>>>>> Rebranding for PAC:plugins/email_requests/qt.py
+
         msg.attach(part)
         try:
             s = smtplib.SMTP_SSL(self.imap_server, timeout=2)

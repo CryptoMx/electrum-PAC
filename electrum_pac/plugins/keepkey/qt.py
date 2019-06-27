@@ -1,64 +1,40 @@
 from functools import partial
 import threading
 
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
 from PyQt5.QtCore import Qt, QEventLoop, pyqtSignal, QRegExp
 from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QGridLayout, QPushButton,
+from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QGridLayout,QInputDialog, QPushButton,
                              QHBoxLayout, QButtonGroup, QGroupBox, QDialog,
                              QTextEdit, QLineEdit, QRadioButton, QCheckBox, QWidget,
-                             QMessageBox, QFileDialog, QSlider, QTabWidget)
+                             QMessageBox, QFileDialog, QSlider, QTabWidget,SIGNAL)
 
-from electrum_dash.gui.qt.util import (WindowModalDialog, WWLabel, Buttons, CancelButton,
+from electrum_PAC.gui.qt.util import (WindowModalDialog, WWLabel, Buttons, CancelButton,
                                        OkButton, CloseButton)
-from electrum_dash.i18n import _
-from electrum_dash.plugin import hook
-from electrum_dash.util import bh2u
+from electrum_PAC.i18n import _
+from electrum_PAC.util import bh2u, PrintError, UserCancelled
+from electrum_PAC.plugins import hook, DeviceMgr
+from electrum_PAC.wallet import Wallet, Standard_Wallet
 
-=======
-from PyQt4.Qt import Qt
-from PyQt4.Qt import QGridLayout, QInputDialog, QPushButton
-from PyQt4.Qt import QVBoxLayout, QLabel, SIGNAL
-from electrum_PAC_gui.qt.util import *
 from .plugin import TIM_NEW, TIM_RECOVER, TIM_MNEMONIC
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
 from ..hw_wallet.qt import QtHandlerBase, QtPluginBase
 from ..hw_wallet.plugin import only_hook_if_libraries_available
 from .keepkey import KeepKeyPlugin, TIM_NEW, TIM_RECOVER, TIM_MNEMONIC
 
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-=======
-from electrum_PAC.i18n import _
-from electrum_PAC.plugins import hook, DeviceMgr
-from electrum_PAC.util import PrintError, UserCancelled
-from electrum_PAC.wallet import Wallet, Standard_Wallet
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
 
 PASSPHRASE_HELP_SHORT =_(
     "Passphrases allow you to access new wallets, each "
     "hidden behind a particular case-sensitive passphrase.")
 PASSPHRASE_HELP = PASSPHRASE_HELP_SHORT + "  " + _(
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-    "You need to create a separate Dash Electrum wallet for each passphrase "
-=======
     "You need to create a separate Electrum-PAC wallet for each passphrase "
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
     "you use as they each generate different addresses.  Changing "
     "your passphrase does not lose other wallets, each is still "
     "accessible behind its own passphrase.")
 RECOMMEND_PIN = _(
     "You should enable PIN protection.  Your PIN is the only protection "
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-    "for your Dash coins if your device is lost or stolen.")
-PASSPHRASE_NOT_PIN = _(
-    "If you forget a passphrase you will be unable to access any "
-    "Dash coins in the wallet behind it.  A passphrase is not a PIN. "
-=======
     "for your PAC if your device is lost or stolen.")
 PASSPHRASE_NOT_PIN = _(
     "If you forget a passphrase you will be unable to access any "
     "PAC in the wallet behind it.  A passphrase is not a PIN. "
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
     "Only change this if you are sure you understand it.")
 CHARACTER_RECOVERY = (
     "Use the recovery cipher shown on your device to input your seed words.  "
@@ -282,11 +258,8 @@ class QtPlugin(QtPluginBase):
             else:
                 msg = _("Enter the master private key beginning with xprv:")
                 def set_enabled():
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-                    from electrum_dash.bip32 import is_xprv
-=======
+                    from electrum_PAC.bip32 import is_xprv
                     from electrum_PAC.keystore import is_xprv
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
                     wizard.next_button.setEnabled(is_xprv(clean_text(text)))
                 text.textChanged.connect(set_enabled)
                 next_enabled = False
@@ -410,21 +383,13 @@ class SettingsDialog(WindowModalDialog):
             currently_enabled = self.features.passphrase_protection
             if currently_enabled:
                 msg = _("After disabling passphrases, you can only pair this "
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-                        "Dash Electrum wallet if it had an empty passphrase.  "
-=======
                         "Electrum-PAC wallet if it had an empty passphrase.  "
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
                         "If its passphrase was not empty, you will need to "
                         "create a new wallet with the install wizard.  You "
                         "can use this wallet again at any time by re-enabling "
                         "passphrases and entering its passphrase.")
             else:
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-                msg = _("Your current Dash Electrum wallet can only be used with "
-=======
                 msg = _("Your current Electrum-PAC wallet can only be used with "
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
                         "an empty passphrase.  You must create a separate "
                         "wallet with the install wizard for other passphrases "
                         "as each one generates a new set of addresses.")
@@ -444,11 +409,7 @@ class SettingsDialog(WindowModalDialog):
             if wallet and sum(wallet.get_balance()):
                 title = _("Confirm Device Wipe")
                 msg = _("Are you SURE you want to wipe the device?\n"
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-                        "Your wallet still has Dash coins in it!")
-=======
                         "Your wallet still has PAC in it!")
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
                 if not self.question(msg, title=title,
                                      icon=QMessageBox.Critical):
                     return
@@ -523,13 +484,8 @@ class SettingsDialog(WindowModalDialog):
         settings_glayout.addWidget(pin_button, 2, 1)
         pin_msg = QLabel(_("PIN protection is strongly recommended.  "
                            "A PIN is your only protection against someone "
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-                           "stealing your Dash coins if they obtain physical "
-                           "access to your {}.").format(plugin.device))
-=======
                            "stealing your PAC if they obtain physical "
-                           "access to your %s.") % plugin.device)
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
+                           "access to your {}.").format(plugin.device))
         pin_msg.setWordWrap(True)
         pin_msg.setStyleSheet("color: red")
         settings_glayout.addWidget(pin_msg, 3, 1, 1, -1)
@@ -570,11 +526,8 @@ class SettingsDialog(WindowModalDialog):
         clear_pin_button.clicked.connect(clear_pin)
         clear_pin_warning = QLabel(
             _("If you disable your PIN, anyone with physical access to your "
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-              "{} device can spend your Dash coins.").format(plugin.device))
-=======
-              "%s device can spend your PAC.") % plugin.device)
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
+
+              "{} device can spend your PAC coins.").format(plugin.device))
         clear_pin_warning.setWordWrap(True)
         clear_pin_warning.setStyleSheet("color: red")
         advanced_glayout.addWidget(clear_pin_button, 0, 2)
@@ -599,11 +552,7 @@ class SettingsDialog(WindowModalDialog):
         wipe_device_msg.setWordWrap(True)
         wipe_device_warning = QLabel(
             _("Only wipe a device if you have the recovery seed written down "
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/keepkey/qt.py
-              "and the device wallet(s) are empty, otherwise the Dash coins "
-=======
               "and the device wallet(s) are empty, otherwise the PAC "
->>>>>>> Rebranding for PAC:plugins/trezor/qt_generic.py
               "will be lost forever."))
         wipe_device_warning.setWordWrap(True)
         wipe_device_warning.setStyleSheet("color: red")

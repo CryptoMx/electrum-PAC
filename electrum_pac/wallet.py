@@ -27,6 +27,7 @@
 #   - Multisig_Wallet: several keystores, P2SH
 
 
+
 import os
 import sys
 import random
@@ -59,6 +60,7 @@ from .address_synchronizer import (AddressSynchronizer, TX_HEIGHT_LOCAL,
 from .paymentrequest import PR_PAID, PR_UNPAID, PR_UNKNOWN, PR_EXPIRED
 from .paymentrequest import InvoiceStore
 from .contacts import Contacts
+
 
 TX_STATUS = [
     _('Unconfirmed'),

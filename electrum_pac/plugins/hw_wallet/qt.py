@@ -27,25 +27,19 @@
 import threading
 from functools import partial
 
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/hw_wallet/qt.py
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QVBoxLayout, QLineEdit, QHBoxLayout, QLabel
 
-from electrum_dash.gui.qt.password_dialog import PasswordLayout, PW_PASSPHRASE
-from electrum_dash.gui.qt.util import (read_QIcon, WWLabel, OkButton, WindowModalDialog,
-                                       Buttons, CancelButton, TaskThread)
+from electrum_PAC.gui.qt.password_dialog import PasswordLayout, PW_PASSPHRASE
+from electrum_PAC.gui.qt.util import (read_QIcon, WWLabel, OkButton, WindowModalDialog, Buttons, CancelButton, TaskThread)
 
-from electrum_dash.i18n import _
-from electrum_dash.logging import Logger
+from electrum_PAC.i18n import _
+from electrum_PAC.logging import Logger
 
-=======
-from PyQt4.Qt import QVBoxLayout, QLabel, SIGNAL
 from electrum_PAC_gui.qt.password_dialog import PasswordDialog, PW_PASSPHRASE
 from electrum_PAC_gui.qt.util import *
 
-from electrum_PAC.i18n import _
 from electrum_PAC.util import PrintError
->>>>>>> Rebranding for PAC:plugins/hw_wallet/qt.py
 
 # The trickiest thing about this handler was getting windows properly
 # parented on macOS.
@@ -197,15 +191,10 @@ class QtHandlerBase(QObject, Logger):
 
 
 
-<<<<<<< refs/remotes/upstream/master:electrum_dash/plugins/hw_wallet/qt.py
-from electrum_dash.plugin import hook
-from electrum_dash.util import UserCancelled
-from electrum_dash.gui.qt.main_window import StatusBarButton
-=======
-from electrum_PAC.plugins import hook
+from electrum_PAC.plugin import hook
 from electrum_PAC.util import UserCancelled
-from electrum_PAC_gui.qt.main_window import StatusBarButton
->>>>>>> Rebranding for PAC:plugins/hw_wallet/qt.py
+from electrum_PAC.gui.qt.main_window import StatusBarButton
+#from electrum_PAC.plugins import hook
 
 class QtPluginBase(object):
 
