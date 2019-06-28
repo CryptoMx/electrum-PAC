@@ -18,8 +18,8 @@ import bitcoin
 from blockchain import Blockchain
 from masternode import MasternodeAnnounce, NetworkAddress
 from masternode_budget import BudgetProposal, BudgetVote
-from electrum_PAC.util import AlreadyHaveAddress, print_error
-from electrum_PAC.util import format_satoshis_plain
+from electrum_pac.util import AlreadyHaveAddress, print_error
+from electrum_pac.util import format_satoshis_plain
 
 
 BUDGET_FEE_CONFIRMATIONS = 6
