@@ -41,15 +41,15 @@ from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QGridLayout, QLineEdit,
                              QInputDialog)
 
-from electrum_PAC.gui.qt.util import (EnterButton, Buttons, CloseButton,
+from electrum_pac.gui.qt.util import (EnterButton, Buttons, CloseButton,
                                        OkButton, WindowModalDialog,
                                        get_parent_main_window)
 
-from electrum_PAC.plugin import BasePlugin, hook
-from electrum_PAC.paymentrequest import PaymentRequest
-from electrum_PAC.i18n import _
-from electrum_PAC.logging import Logger
-#from electrum_PAC.plugins import BasePlugin, hook
+from electrum_pac.plugin import BasePlugin, hook
+from electrum_pac.paymentrequest import PaymentRequest
+from electrum_pac.i18n import _
+from electrum_pac.logging import Logger
+#from electrum_pac.plugins import BasePlugin, hook
 
 
 

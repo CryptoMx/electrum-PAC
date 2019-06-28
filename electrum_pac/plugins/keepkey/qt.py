@@ -8,12 +8,12 @@ from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QGridLayout,QInputDialog, QPus
                              QTextEdit, QLineEdit, QRadioButton, QCheckBox, QWidget,
                              QMessageBox, QFileDialog, QSlider, QTabWidget,SIGNAL)
 
-from electrum_PAC.gui.qt.util import (WindowModalDialog, WWLabel, Buttons, CancelButton,
+from electrum_pac.gui.qt.util import (WindowModalDialog, WWLabel, Buttons, CancelButton,
                                        OkButton, CloseButton)
-from electrum_PAC.i18n import _
-from electrum_PAC.util import bh2u, PrintError, UserCancelled
-from electrum_PAC.plugins import hook, DeviceMgr
-from electrum_PAC.wallet import Wallet, Standard_Wallet
+from electrum_pac.i18n import _
+from electrum_pac.util import bh2u, PrintError, UserCancelled
+from electrum_pac.plugins import hook, DeviceMgr
+from electrum_pac.wallet import Wallet, Standard_Wallet
 
 from .plugin import TIM_NEW, TIM_RECOVER, TIM_MNEMONIC
 from ..hw_wallet.qt import QtHandlerBase, QtPluginBase
@@ -258,8 +258,8 @@ class QtPlugin(QtPluginBase):
             else:
                 msg = _("Enter the master private key beginning with xprv:")
                 def set_enabled():
-                    from electrum_PAC.bip32 import is_xprv
-                    from electrum_PAC.keystore import is_xprv
+                    from electrum_pac.bip32 import is_xprv
+                    from electrum_pac.keystore import is_xprv
                     wizard.next_button.setEnabled(is_xprv(clean_text(text)))
                 text.textChanged.connect(set_enabled)
                 next_enabled = False

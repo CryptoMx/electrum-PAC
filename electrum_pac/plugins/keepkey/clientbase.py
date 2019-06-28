@@ -2,13 +2,13 @@ import time
 from struct import pack
 
 from electrum_PAC import ecc
-from electrum_PAC.i18n import _
-from electrum_PAC.keystore import bip39_normalize_passphrase
-from electrum_PAC.bip32 import BIP32Node, convert_bip32_path_to_list_of_uint32
-from electrum_PAC.logging import Logger
+from electrum_pac.i18n import _
+from electrum_pac.keystore import bip39_normalize_passphrase
+from electrum_pac.bip32 import BIP32Node, convert_bip32_path_to_list_of_uint32
+from electrum_pac.logging import Logger
 
-from electrum_PAC.util import PrintError, UserCancelled
-from electrum_PAC.bitcoin import serialize_xpub
+from electrum_pac.util import PrintError, UserCancelled
+from electrum_pac.bitcoin import serialize_xpub
 
 
 class GuiMixin(object):

@@ -14,16 +14,16 @@ from PyQt5.QtCore import QThread, pyqtSignal
 
 from btchip.btchip import BTChipException
 
-from electrum_PAC.gui.qt.qrcodewidget import QRCodeWidget
-from electrum_PAC.i18n import _
+from electrum_pac.gui.qt.qrcodewidget import QRCodeWidget
+from electrum_pac.i18n import _
 from electrum_PAC import constants, bitcoin
-from electrum_PAC.logging import get_logger
+from electrum_pac.logging import get_logger
 
 
 _logger = get_logger(__name__)
 
 from electrum_PAC_gui.qt.util import *
-from electrum_PAC.util import print_msg
+from electrum_pac.util import print_msg
 
 import websocket, threading
 from electrum_PAC_gui.qt.qrcodewidget import QRCodeWidget, QRDialog

@@ -1,7 +1,7 @@
 #from .labels import LabelsPlugin
-#from electrum_PAC.plugin import hook
+#from electrum_pac.plugin import hook
 from labels import LabelsPlugin
-from electrum_PAC.plugins import hook
+from electrum_pac.plugins import hook
 
 class Plugin(LabelsPlugin):
 
