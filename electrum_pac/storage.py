@@ -30,10 +30,9 @@ import base64
 import zlib
 
 from . import ecc
-from .util import profiler, InvalidPassword, WalletFileException, bfh, standardize_path
+from .util import PrintError, profiler, InvalidPassword, WalletFileException, bfh
 from .plugin import run_hook, plugin_loaders
 
-from .json_db import JsonDB
 from .logging import Logger
 
 
@@ -45,6 +44,95 @@ def get_derivation_used_for_hw_device_encryption():
 # storage encryption version
 STO_EV_PLAINTEXT, STO_EV_USER_PW, STO_EV_XPUB_PW = range(0, 3)
 
+def multisig_type(wallet_type):
+    '''If wallet_type is mofn multi-sig, return [m, n],
+    otherwise return None.'''
+    if not wallet_type:
+        return None
+    match = re.match('(\d+)of(\d+)', wallet_type)
+    if match:
+        match = [int(x) for x in match.group(1, 2)]
+    return match
+
+def get_derivation_used_for_hw_device_encryption():
+    return ("m"
+            "/4541509'"      # ascii 'ELE'  as decimal ("BIP43 purpose")
+            "/1112098098'")  # ascii 'BIE2' as decimal
+
+# storage encryption version
+STO_EV_PLAINTEXT, STO_EV_USER_PW, STO_EV_XPUB_PW = range(0, 3)
+
+
+class JsonDB(PrintError):
+
+    def __init__(self, path):
+        self.db_lock = threading.RLock()
+        self.data = {}
+        self.path = path
+        self.modified = False
+
+    def get(self, key, default=None):
+        with self.db_lock:
+            v = self.data.get(key)
+            if v is None:
+                v = default
+            else:
+                v = copy.deepcopy(v)
+        return v
+
+    def put(self, key, value):
+        try:
+            json.dumps(key, cls=util.MyEncoder)
+            json.dumps(value, cls=util.MyEncoder)
+        except:
+            self.print_error("json error: cannot save", key)
+            return
+        with self.db_lock:
+            if value is not None:
+                if self.data.get(key) != value:
+                    self.modified = True
+                    self.data[key] = copy.deepcopy(value)
+            elif key in self.data:
+                self.modified = True
+                self.data.pop(key)
+
+    @profiler
+    def write(self):
+        with self.db_lock:
+            self._write()
+
+    def _write(self):
+        if threading.currentThread().isDaemon():
+            self.print_error('warning: daemon thread cannot write db')
+            return
+        if not self.modified:
+            return
+        s = json.dumps(self.data, indent=4, sort_keys=True, cls=util.MyEncoder)
+        s = self.encrypt_before_writing(s)
+
+        temp_path = "%s.tmp.%s" % (self.path, os.getpid())
+        with open(temp_path, "w", encoding='utf-8') as f:
+            f.write(s)
+            f.flush()
+            os.fsync(f.fileno())
+
+        mode = os.stat(self.path).st_mode if os.path.exists(self.path) else stat.S_IREAD | stat.S_IWRITE
+        # perform atomic write on POSIX systems
+        try:
+            os.rename(temp_path, self.path)
+        except:
+            os.remove(self.path)
+            os.rename(temp_path, self.path)
+        os.chmod(self.path, mode)
+        self.print_error("saved", self.path)
+        self.modified = False
+
+    def encrypt_before_writing(self, plaintext: str) -> str:
+        return plaintext
+
+    def file_exists(self):
+        return self.path and os.path.exists(self.path)
+
 
 
 class WalletStorage(Logger):
@@ -52,7 +140,7 @@ class WalletStorage(Logger):
     def __init__(self, path, *, manual_upgrades=False):
         Logger.__init__(self)
         self.lock = threading.RLock()
-        self.path = standardize_path(path)
+        self.path = path
         self._file_exists = self.path and os.path.exists(self.path)
 
         DB_Class = JsonDB
