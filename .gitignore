@@ -3,7 +3,7 @@
 *.swp
 build/
 dist/
-electrum_dash/locale/
+electrum_pac/locale/
 .devlocaltmp/
 *_trial_temp
 packages
